@@ -1,1 +1,51 @@
-<p>register works!</p>
+<div class="card gradient-custom text-white h-100 overflow-hidden">
+  <div class="card-body p-5 text-start">
+
+    <div class="mb-md-2 mt-md-4 pb-2">
+
+      <h2 class="fw-bold mb-2 text-uppercase">Регистрация</h2>
+      <form [formGroup]="form" class="needs-validation" novalidate>
+        <mat-form-field class="form-outline form-white w-100" appearance="fill">
+          <mat-label>Име</mat-label>
+          <input matInput placeholder="Име" [formControl]="f['name']">
+          <mat-error *ngIf="f['name'].hasError('required')">
+            Моля попълнете полето име!
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="w-100 " appearance="fill">
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="Email" [formControl]="f['email']">
+          <mat-error *ngIf="f['email'].hasError('required')">
+            Моля попълнете полето еmail!
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-100 " appearance="fill">
+          <mat-label>Парола</mat-label>
+          <input matInput placeholder="Парола" [formControl]="f['password']">
+          <mat-error *ngIf="f['password'].hasError('required')">
+            Моля попълнете полето парола!
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="w-100 " appearance="fill">
+          <mat-label>Повтори парола</mat-label>
+          <input matInput placeholder="Повтори парола" [formControl]="f['re_password']">
+          <mat-error *ngIf="f['re_password'].hasError('required')">
+            Моля попълнете полето повтори парола!
+          </mat-error>
+        </mat-form-field>
+
+
+      </form>
+
+      <div class="row d-flex justify-content-center">
+        <button mat-raised-button class="btn btn-outline-light btn-lg px-5 col-4 " type="button"
+          (click)="register()">Регистрация</button>
+        <button mat-raised-button class="btn btn-outline-light btn-lg px-5 col-4 ms-3" type="button"
+          (click)="this.dialogRef.close()">Отказ</button>
+      </div>
+
+
+    </div>
+  </div>
+</div>
