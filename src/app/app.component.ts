@@ -1,8 +1,7 @@
 import { Component, isDevMode } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from './auth/login/login.component';
-import { RegisterComponent } from './auth/register/register.component';
-
+  
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -20,7 +19,7 @@ export class AppComponent {
     }
   }
   openDialog(): void {
-    const dialogRef = this.dialog.open(RegisterComponent, {
+    const dialogRef = this.dialog.open(LoginComponent, {
       data: {},
       width: '600px',
       height: '600',

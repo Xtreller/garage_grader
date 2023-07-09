@@ -9,7 +9,11 @@ export class AuthService {
 
   constructor(public http:HttpClient) { }
   register(data:any = null){
-    console.log(environment.apiUrl);
-    return this.http.post(environment.apiUrl +'/register',data);
+    console.log(data);
+    return this.http.post(environment.apiUrl +'/api/gg/register',data);
+  }
+  login(data:any = null){
+    console.log(data);
+    return this.http.post(environment.apiUrl +'/api/gg/login',data);
   }
 }
