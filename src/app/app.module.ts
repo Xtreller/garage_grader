@@ -8,6 +8,7 @@ import { RegisterComponent } from './auth/register/register.component';
 import { AuthModule } from './auth/auth.module';
 import { MaterialModule } from './material/material.module';
 import { HttpClientModule } from '@angular/common/http';
+import { GarageModule } from './components/garage/garage.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
     NoopAnimationsModule,
     HttpClientModule,
     AuthModule,
-    MaterialModule
+    MaterialModule,
+    GarageModule
   ],
   providers: [],
   bootstrap: [AppComponent]
