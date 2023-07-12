@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { RegisterComponent } from '../register/register.component';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/Auth/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { LoginEmitter } from 'src/app/emitters/login_emitter';
 
 @Component({
   selector: 'app-login',
@@ -11,6 +12,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
+
   form:FormGroup;
   constructor(public dialog: MatDialog,public dialogRef:MatDialogRef<LoginComponent>,private fb:FormBuilder,private auth:AuthService,private snackbar:MatSnackBar) {
     this.form = this.fb.group({
@@ -37,15 +39,12 @@ export class LoginComponent {
   login(){
     if(this.form.valid){
         this.auth.login(this.form.value).subscribe((response:any)=>{
-          console.log(response.status ==='ok');
           if(response.status ==='ok'){
+            console.log(response.user);
             this.snackbar.open('Добре дошли ' + response.user.name + '!','',{duration:2500});
             localStorage.setItem('jwt_token',response.user.id);
             localStorage.setItem('user_name',response.user.name);
-            //TODO: add roles
-            // localStorage.setItem('user_role_id',response.user.id);
-            //TODO: set admin in be
-            // localStorage.setItem('admin',response.user);
+            LoginEmitter.login.emit(true);
 
             this.dialogRef.close();
           }
