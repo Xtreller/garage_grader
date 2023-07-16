@@ -40,10 +40,14 @@ export class LoginComponent {
     if(this.form.valid){
         this.auth.login(this.form.value).subscribe((response:any)=>{
           if(response.status ==='ok'){
-            console.log(response.user);
+            console.log(response);
             this.snackbar.open('Добре дошли ' + response.user.name + '!','',{duration:2500});
-            localStorage.setItem('jwt_token',response.user.id);
-            localStorage.setItem('user_name',response.user.name);
+            localStorage.setItem('TOKEN',response.token);
+            localStorage.setItem('USER_ID',response.user.id);
+            localStorage.setItem('USER_EMAIL',response.user.email);
+            localStorage.setItem('USER_NAME',response.user.name);
+            //TODO: add roles;
+            localStorage.setItem('USER',JSON.stringify(response.user));
             LoginEmitter.login.emit(true);
 
             this.dialogRef.close();
