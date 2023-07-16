@@ -1,0 +1,77 @@
+<mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="mt-3">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      <h2 class="ps-2 pt-2 fw-bold mb-2 text-uppercase text-muted w-100 ">Основна информация</h2>
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+
+  <div class="mb-md-2 mt-md-4 pb-2" formGroupName="main_info">
+
+    <mat-form-field class="form-outline form-white w-100 mb-2" appearance="outline">
+      <mat-label>Име на гаража</mat-label>
+      <input matInput placeholder="Име" formControlName="name">
+      <mat-error class="mt-1"
+        *ngIf="this.parentForm.get('name')?.hasError('required') && (this.parentForm.get('name')?.dirty || this.parentForm.get('name')?.touched) ">
+        Моля попълнете име на гаража!
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="form-outline form-white w-100 mb-2" appearance="outline">
+      <mat-label>Описание</mat-label>
+      <textarea matInput placeholder="Описание" formControlName="description"></textarea>
+      <mat-error class="mt-1"
+        *ngIf="this.parentForm.get('description')?.hasError('description') && (this.parentForm.get('description')?.dirty || this.parentForm.get('description')?.touched) ">
+        Моля попълнете име на гаража!
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="form-outline form-white w-100 mb-2" appearance="outline">
+      <mat-label>Tип гараж</mat-label>
+      <input matInput placeholder="Тип" formControlName="type">
+      <mat-error class="mt-1"
+        *ngIf="this.parentForm.get('type')?.hasError('type') && (this.parentForm.get('type')?.dirty || this.parentForm.get('type')?.touched) ">
+        Моля попълнете тип на гаража!
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="form-outline form-white w-100 mb-2" appearance="outline">
+      <mat-label>Услуги</mat-label>
+      <textarea matInput placeholder="Услуги" formControlName="services"></textarea>
+      <mat-error class="mt-1"
+        *ngIf="this.parentForm.get('services')?.hasError('services') && (this.parentForm.get('services')?.dirty || this.parentForm.get('services')?.touched) ">
+        Моля попълнете услуги и/или продукти които гаража предлага!
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="form-outline form-white w-100 mb-2" appearance="outline">
+      <mat-label>Телефон</mat-label>
+      <input matInput placeholder="Телефон" formControlName="phone">
+      <mat-error class="mt-1"
+        *ngIf="this.parentForm.get('phone')?.hasError('phone') && (this.parentForm.get('phone')?.dirty || this.parentForm.get('phone')?.touched) ">
+        Моля попълнете име на гаража!
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="form-outline form-white w-100 mb-2" appearance="outline">
+      <mat-label>Град</mat-label>
+      <input matInput placeholder="Град" formControlName="town">
+      <mat-error class="mt-1"
+        *ngIf="this.parentForm.get('town')?.hasError('town') && (this.parentForm.get('town')?.dirty || this.parentForm.get('town')?.touched) ">
+        Моля попълнете град!
+      </mat-error>
+    </mat-form-field>
+    <mat-checkbox class="" color="primary" formControlName="mobile_service">
+      Услугите са мобилни!
+    </mat-checkbox>
+    <mat-form-field class="form-outline form-white w-100 mb-2" appearance="outline">
+      <mat-label>Адрес</mat-label>
+      <input matInput placeholder="Адрес" formControlName="address">
+      <!-- <mat-error class="mt-1" *ngIf="this.parentForm.get('address')?.hasError('address') && (this.parentForm.get('address')?.dirty || this.parentForm.get('address')?.touched) ">
+          Моля попълнете адрес!
+        </mat-error> -->
+    </mat-form-field>
+    <mat-form-field class="form-outline form-white w-100 mb-2" appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput placeholder="Email" formControlName="email">
+      <mat-error class="mt-1"
+        *ngIf="this.parentForm.get('email')?.hasError('email') && (this.parentForm.get('email')?.dirty || this.parentForm.get('email')?.touched) ">
+        Моля попълнете име на гаража!
+      </mat-error>
+    </mat-form-field>
+  </div>
+</mat-expansion-panel>
