@@ -10,12 +10,13 @@ import { ControlContainer, Form, FormBuilder, FormControl, FormGroup, FormGroupD
 export class MainInfoComponent implements OnInit {
   // @Input() form: FormGroup;
   parentForm!: FormGroup;
-  panelOpenState:boolean = true;
+  mainInfoOpen:boolean = true;
 
   constructor(private fb: FormBuilder, private parent: FormGroupDirective) {
 
   }
   ngOnInit(): void {
+    this.mainInfoOpen = true;
     this.parentForm = this.parent.form;
     this.parentForm.addControl(
       'main_info',

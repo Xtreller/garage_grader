@@ -18,22 +18,9 @@ export class PicturesComponent implements OnInit {
 
     this.parentForm = this.parent.form;
     this.parentForm.addControl(
-      'worktime',
+      'pictures',
       this.fb.group({
-        mon_start: new FormControl("", Validators.required),
-        mon_end: new FormControl("", Validators.required),
-        tue_start: new FormControl("", Validators.required),
-        tue_end: new FormControl("", Validators.required),
-        wed_start: new FormControl("", Validators.required),
-        wed_end: new FormControl("", Validators.required),
-        thu_start: new FormControl("", Validators.required),
-        thu_end: new FormControl("", Validators.required),
-        fri_start: new FormControl("", Validators.required),
-        fri_end: new FormControl("", Validators.required),
-        sat_start: new FormControl("", Validators.required),
-        sat_end: new FormControl("", Validators.required),
-        sun_start: new FormControl("", Validators.required),
-        sun_end: new FormControl("", Validators.required),
+        pictures:new FormControl([])
       })
     );
   }

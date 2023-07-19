@@ -11,12 +11,14 @@ import { AuthService } from './services/Auth/auth.service';
 })
 export class AppComponent {
   title = 'garage_grader';
-  userLogged: Boolean = localStorage.getItem('TOKEN')?true:false;
-  userName: string | null = localStorage.getItem('user_name') ? localStorage.getItem('user_name') :"";
+  userLogged: Boolean = !!localStorage.getItem('TOKEN');
+  userName: string | null = localStorage.getItem('USER_NAME') ? localStorage.getItem('USER_NAME') :"";
   constructor(public dialog: MatDialog,public auth:AuthService) {
+    console.log('test',this.userLogged);
+
     LoginEmitter.login.subscribe((result: boolean) => {
       this.userLogged = result;
-      this.userName = localStorage.getItem('user_name') ? localStorage.getItem('user_name') :"";
+      this.userName = localStorage.getItem('USER_NAME') ? localStorage.getItem('USER_NAME') :"";
     });
   }
   ngOnInit() {

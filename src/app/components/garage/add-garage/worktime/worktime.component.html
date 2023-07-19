@@ -6,6 +6,12 @@
   </mat-expansion-panel-header>
   <div class="mb-md-2 mt-md-4 pb-2" formGroupName="worktime">
     <div class="row">
+      <mat-checkbox class="example-margin"  color="primary"
+        (change)="cheboxChecked($event.checked)">
+        Денонощно отворено!
+      </mat-checkbox>
+    </div>
+    <div class="row">
       <div class="col">
 
         <mat-form-field class="form-outline form-white w-100 mb-2" appearance="outline">

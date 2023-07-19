@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ControlContainer, FormBuilder, FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-worktime',
@@ -20,6 +21,7 @@ export class WorktimeComponent {
     this.parentForm.addControl(
       'worktime',
       this.fb.group({
+        always_open:new FormControl(""),
         mon_start:new FormControl("",Validators.required),
         mon_end:new FormControl("",Validators.required),
         tue_start:new FormControl("",Validators.required),
@@ -36,5 +38,42 @@ export class WorktimeComponent {
         sun_end:new FormControl("",Validators.required),
       })
     );
+  }
+  cheboxChecked(checked:MatCheckboxChange){
+    console.log(checked);
+    if(!checked){
+      this.parentForm.get('mon_start')?.addValidators(Validators.required);
+      this.parentForm.get('mon_end')?.addValidators(Validators.required);
+      this.parentForm.get('tue_start')?.addValidators(Validators.required);
+      this.parentForm.get('tue_end')?.addValidators(Validators.required);
+      this.parentForm.get('wed_start')?.addValidators(Validators.required);
+      this.parentForm.get('wed_end')?.addValidators(Validators.required);
+      this.parentForm.get('thu_start')?.addValidators(Validators.required);
+      this.parentForm.get('thu_end')?.addValidators(Validators.required);
+      this.parentForm.get('fri_start')?.addValidators(Validators.required);
+      this.parentForm.get('fri_end')?.addValidators(Validators.required);
+      this.parentForm.get('sat_start')?.addValidators(Validators.required);
+      this.parentForm.get('sat_end')?.addValidators(Validators.required);
+      this.parentForm.get('sun_start')?.addValidators(Validators.required);
+      this.parentForm.get('sun_end')?.addValidators(Validators.required);
+    }
+    else{
+      this.parentForm.get('mon_start')?.removeValidators(Validators.required);
+      this.parentForm.get('mon_end')?.removeValidators(Validators.required);
+      this.parentForm.get('tue_start')?.removeValidators(Validators.required);
+      this.parentForm.get('tue_end')?.removeValidators(Validators.required);
+      this.parentForm.get('wed_start')?.removeValidators(Validators.required);
+      this.parentForm.get('wed_end')?.removeValidators(Validators.required);
+      this.parentForm.get('thu_start')?.removeValidators(Validators.required);
+      this.parentForm.get('thu_end')?.removeValidators(Validators.required);
+      this.parentForm.get('fri_start')?.removeValidators(Validators.required);
+      this.parentForm.get('fri_end')?.removeValidators(Validators.required);
+      this.parentForm.get('sat_start')?.removeValidators(Validators.required);
+      this.parentForm.get('sat_end')?.removeValidators(Validators.required);
+      this.parentForm.get('sun_start')?.removeValidators(Validators.required);
+      this.parentForm.get('sun_end')?.removeValidators(Validators.required);
+    }
+
+
   }
 }
