@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { GarageService } from 'src/app/services/Garage/garage.service';
+import { GarageService } from 'src/app/features/services/Garage/garage.service';
+
 
 @Component({
   selector: 'app-add-garage',
@@ -17,9 +18,7 @@ export class AddGarageComponent  {
   }
 
   onSubmit() {
-    console.log(this.form.valid);
     if(this.form.valid){
-      console.log(this.form.value);
       this.garageService.addGarage(this.form.value).subscribe((response:any)=>{
         console.log(response);
         if(response.status == 'ok'){

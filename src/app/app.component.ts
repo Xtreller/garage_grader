@@ -1,8 +1,8 @@
 import { Component, isDevMode } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { LoginComponent } from './auth/login/login.component';
-import { LoginEmitter } from './emitters/login_emitter';
-import { AuthService } from './services/Auth/auth.service';
+import { LoginComponent } from './core/components/auth/login/login.component';
+import { LoginEmitter } from './core/emitters/login_emitter';
+import { AuthService } from './core/services/Auth/auth.service';
 
 @Component({
   selector: 'app-root',

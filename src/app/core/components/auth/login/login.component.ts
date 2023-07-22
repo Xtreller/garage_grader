@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { RegisterComponent } from '../register/register.component';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/services/Auth/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { LoginEmitter } from 'src/app/emitters/login_emitter';
+import { LoginEmitter } from 'src/app/core/emitters/login_emitter';
+import { AuthService } from 'src/app/core/services/Auth/auth.service';
+import { RegisterComponent } from '../register/register.component';
 
 @Component({
   selector: 'app-login',

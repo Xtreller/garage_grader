@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { LoginEmitter } from 'src/app/emitters/login_emitter';
 import { environment } from 'src/environment/environment';
+import { LoginEmitter } from '../../emitters/login_emitter';
 
 @Injectable({
   providedIn: 'root'

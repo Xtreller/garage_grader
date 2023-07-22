@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { RegisterComponent } from './auth/register/register.component';
-import { AuthModule } from './auth/auth.module';
-import { MaterialModule } from './material/material.module';
 import { HttpClientModule } from '@angular/common/http';
-import { GarageModule } from './components/garage/garage.module';
+import { AppRoutingModule } from './app-routing.module';
+import { AuthModule } from './core/components/auth/auth.module';
+import { GarageModule } from './features/components/garage/garage.module';
+import { MaterialModule } from './shared/material/material.module';
+
+import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -17,8 +17,8 @@ import { GarageModule } from './components/garage/garage.module';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule,
     NoopAnimationsModule,
+    AppRoutingModule,
     HttpClientModule,
     AuthModule,
     MaterialModule,
