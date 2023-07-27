@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, ValidationErrors } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { GarageService } from 'src/app/features/services/Garage/garage.service';
 
@@ -16,13 +16,14 @@ export class AddGarageComponent  {
   // panelOpenState = false;
   constructor(private snackbar:MatSnackBar,private garageService:GarageService) {
   }
-
+  get controls(){
+    return this.form.controls;
+  }
   onSubmit() {
     if(this.form.valid){
       this.garageService.addGarage(this.form.value).subscribe((response:any)=>{
-        console.log(response);
         if(response.status == 'ok'){
-          console.log(response.status);
+          // console.log(response.status);
         }
       });
     }
@@ -30,6 +31,7 @@ export class AddGarageComponent  {
       this.snackbar.open('Моля попълнете задължителните полета!',"",{duration:2500})
     }
   }
+
 
 
 }
