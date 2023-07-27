@@ -1,75 +1,23 @@
 <div class="card-container">
   <div class="card-deck">
-    <div class="card mb-3 shadow-sm">
+    <div class="card mb-3 shadow-sm" *ngFor="let garage of garageList">
       <div class="d-flex flex-row ">
 
         <img
           src="https://images.unsplash.com/photo-1570129476815-ba368ac77013?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Z2FyYWdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
           class="card-img-left col-5" alt="...">
         <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text align-self-middle">This is a wider card with supporting text below as a natural lead-in to
-            additional content.
-            This content is a little bit longer.</p>
+          <h5 class="card-title">{{garage.name}}</h5>
+          <p class="card-text align-self-middle">{{garage.description}}</p>
+          <p class="card-text align-self-middle ">{{garage.type}}</p>
+          <p class="card-text align-self-middle">{{garage.services}}</p>
+          <p class="card-text align-self-middle">{{garage.description}}</p>
         </div>
-        <div class=" align-self-center h-100 border">
-          <small class="text-muted">Last updated 3 mins ago</small>
-        </div>
-      </div>
-    </div>
-    <div class="card mb-3">
-      <div class="d-flex flex-row ">
-
-        <img
-          src="https://images.unsplash.com/photo-1486006920555-c77dcf18193c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Z2FyYWdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
-          class="card-img-left col-5" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text align-self-middle">This is a wider card with supporting text below as a natural lead-in to
-            additional content.
-            This content is a little bit longer.</p>
-        </div>
-        <div class=" align-self-center h-100 border">
-          <small class="text-muted">Last updated 3 mins ago</small>
+        <div class=" align-self-center d-flex flex-column justify-content-end align-items-end h-100 border-success">
+          <!-- <small class="text-muted">{{garage.created_at}}</small> -->
+          <button mat-raised-button color="primary" class="">Детайли</button>
         </div>
       </div>
     </div>
-    <div class="card mb-3">
-      <div class="d-flex flex-row ">
-
-        <img
-          src="https://plus.unsplash.com/premium_photo-1676747433317-de4e84df75ad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGdhcmFnZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60"
-          class="card-img-left col-5" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text align-self-middle">This is a wider card with supporting text below as a natural lead-in to
-            additional content.
-            This content is a little bit longer.</p>
-        </div>
-        <div class=" align-self-center h-100 border">
-          <small class="text-muted">Last updated 3 mins ago</small>
-        </div>
-      </div>
-    </div>
-    <!-- <div class="card mb-3">
-    <img src="https://unsplash.com/photos/w-bRrLmXODg" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-    </div>
-    <div class="card-footer">
-      <small class="text-muted">Last updated 3 mins ago</small>
-    </div>
-  </div>
-  <div class="card">
-    <img src="https://plus.unsplash.com/premium_photo-1676747433317-de4e84df75ad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGdhcmFnZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-    </div>
-    <div class="card-footer">
-      <small class="text-muted">Last updated 3 mins ago</small>
-    </div>
-  </div> -->
   </div>
 </div>

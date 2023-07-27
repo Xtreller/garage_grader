@@ -6,10 +6,16 @@ import { environment } from 'src/environment/environment';
   providedIn: 'root'
 })
 export class GarageService {
-  private apiUrl:string = environment.apiUrl;
-  constructor(public http:HttpClient,private auth:AuthService) { }
+  private apiUrl: string = environment.apiUrl;
+  constructor(public http: HttpClient, private auth: AuthService) { }
   //ToDo: add data interface
-  addGarage(data:any){
-    return this.http.post(this.apiUrl+'/add_garage/'+this.auth.getLoggedUserId(),data);
+  getGarage(id: number) {
+    return this.http.get(this.apiUrl + '/garage/' + id);
+  }
+  getGarages() {
+    return this.http.get(this.apiUrl + '/garage');
+  }
+  addGarage(data: any) {
+    return this.http.post(this.apiUrl + '/garage/' + this.auth.getLoggedUserId(), data);
   }
 }

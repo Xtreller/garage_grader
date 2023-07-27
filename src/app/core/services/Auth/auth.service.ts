@@ -7,7 +7,7 @@ import { LoginEmitter } from '../../emitters/login_emitter';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl:string = environment.apiUrl;
+  private apiUrl:string = environment.apiUrl ;
   constructor(public http:HttpClient) { }
   isLogged(){
     return !!localStorage.getItem('TOKEN');
@@ -19,10 +19,10 @@ export class AuthService {
     }
   }
   register(data:any = null){
-    return this.http.post(environment.apiUrl +'/api/gg/register',data);
+    return this.http.post(environment.apiUrl +'/register',data);
   }
   login(data:any = null){
-    return this.http.post(environment.apiUrl +'/api/gg/login',data);
+    return this.http.post(environment.apiUrl +'/login',data);
   }
   logout(){
     // localStorage.removeItem('user_id')

@@ -1,4 +1,4 @@
-interface Garage{
+export default interface Garage{
   name:string;
   description:string;
   services:string,

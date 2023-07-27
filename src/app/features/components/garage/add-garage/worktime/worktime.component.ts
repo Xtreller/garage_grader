@@ -12,7 +12,7 @@ import { elementAt } from 'rxjs';
 export class WorktimeComponent {
   //  @Input() f:FormControl;
   //  @Input() form:FormGroup;
-  required: string[] = ['sat_start', 'sat_end', 'sun_start', 'sun_end'];
+  required: string[] = ['sat_start', 'sat_end', 'sun_start', 'sun_end','always_open'];
   parentForm!: FormGroup
   panelOpenState: boolean = false;
   constructor(private parent: FormGroupDirective, private fb: FormBuilder) {
