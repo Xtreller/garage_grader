@@ -8,6 +8,7 @@ import { GarageModule } from './features/components/garage/garage.module';
 import { MaterialModule } from './shared/material/material.module';
 
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { DetailsComponent } from './features/components/garage/details/details.component';
 
 
 @NgModule({

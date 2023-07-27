@@ -13,9 +13,9 @@
           <p class="card-text align-self-middle">{{garage.services}}</p>
           <p class="card-text align-self-middle">{{garage.description}}</p>
         </div>
-        <div class=" align-self-center d-flex flex-column justify-content-end align-items-end h-100 border-success">
+        <div class="d-flex flex-column justify-content-end align-items-center   border-success pe-3 pb-3">
           <!-- <small class="text-muted">{{garage.created_at}}</small> -->
-          <button mat-raised-button color="primary" class="">Детайли</button>
+          <a mat-raised-button color="primary" class="" [routerLink]="['/garage/details', garage.id]">Детайли</a>
         </div>
       </div>
     </div>
