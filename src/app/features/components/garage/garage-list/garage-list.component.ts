@@ -15,8 +15,7 @@ export class GarageListComponent implements OnInit {
   }
   ngOnInit(): void {
       this.garageService.getGarages().subscribe((response:any)=>{
-        console.log(response);
-        this.garageList = response.data;
+          this.garageList = response.data;
       })
   }
 }

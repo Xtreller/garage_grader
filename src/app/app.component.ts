@@ -14,8 +14,6 @@ export class AppComponent {
   userLogged: Boolean = !!localStorage.getItem('TOKEN');
   userName: string | null = localStorage.getItem('USER_NAME') ? localStorage.getItem('USER_NAME') :"";
   constructor(public dialog: MatDialog,public auth:AuthService) {
-    console.log('test',this.userLogged);
-
     LoginEmitter.login.subscribe((result: boolean) => {
       this.userLogged = result;
       this.userName = localStorage.getItem('USER_NAME') ? localStorage.getItem('USER_NAME') :"";
@@ -23,9 +21,9 @@ export class AppComponent {
   }
   ngOnInit() {
     if (isDevMode()) {
-      console.log('Development!');
+      // console.warn('Development!');
     } else {
-      console.log('Production!');
+      console.warn('Production!');
     }
 
   }
@@ -42,7 +40,6 @@ export class AppComponent {
     });
   }
   logout():void {
-    console.log('logout')
     this.auth.logout();
   }
 }

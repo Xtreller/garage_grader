@@ -23,7 +23,6 @@ export class LoginComponent {
   get f() { return this.form.controls; }
 
   openRegistration(): void {
-    console.log('test');
     this.dialogRef.close();
     const dialogRef = this.dialog.open(RegisterComponent, {
       data: {},
@@ -40,7 +39,6 @@ export class LoginComponent {
     if(this.form.valid){
         this.auth.login(this.form.value).subscribe((response:any)=>{
           if(response.status ==='ok'){
-            console.log(response);
             this.snackbar.open('Добре дошли ' + response.user.name + '!','',{duration:2500});
             localStorage.setItem('TOKEN',response.token);
             localStorage.setItem('USER_ID',response.user.id);

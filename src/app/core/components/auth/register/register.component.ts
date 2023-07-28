@@ -23,10 +23,8 @@ export class RegisterComponent {
   get f() { return this.form.controls; }
   register(event: Event) {
     event.preventDefault();
-    console.log(this.form.value);
     if (this.form.valid) {
       this.auth.register(this.form.value).subscribe((response: any) => {
-        console.log(response);
         if (response.status === 'ok') {
           this.snackbar.open("Успешно се регистрирахте!", "close", { duration: 2500 });
           this.dialogRef.close();

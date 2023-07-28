@@ -25,8 +25,6 @@ export class AuthService {
     return this.http.post(environment.apiUrl +'/login',data);
   }
   logout(){
-    // localStorage.removeItem('user_id')
-    console.log('tets');
     localStorage.removeItem('jwt_token')
     localStorage.removeItem('TOKEN')
     localStorage.removeItem('USER_ID')
