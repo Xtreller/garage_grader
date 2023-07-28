@@ -12,13 +12,15 @@ import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 import { InfoComponent } from './shared/components/info/info.component';
 import { LoadingInterceptor } from './shared/interceptors/loading.interceptor';
 import { LoadingComponent } from './shared/components/loading/loading.component';
+import { HeaderComponent } from './core/components/header/header.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     InfoComponent,
-    LoadingComponent
+    LoadingComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

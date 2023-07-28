@@ -10,36 +10,14 @@ import { AuthService } from './core/services/Auth/auth.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'garage_grader';
-  userLogged: Boolean = !!localStorage.getItem('TOKEN');
-  userName: string | null = localStorage.getItem('USER_NAME') ? localStorage.getItem('USER_NAME') :"";
-  constructor(public dialog: MatDialog,public auth:AuthService) {
-    LoginEmitter.login.subscribe((result: boolean) => {
-      this.userLogged = result;
-      this.userName = localStorage.getItem('USER_NAME') ? localStorage.getItem('USER_NAME') :"";
-    });
-  }
+  title = 'Garage Grader';
+  constructor(public dialog: MatDialog,public auth:AuthService) {}
   ngOnInit() {
     if (isDevMode()) {
       // console.warn('Development!');
     } else {
       console.warn('Production!');
     }
-
   }
-  openDialog(): void {
-    const dialogRef = this.dialog.open(LoginComponent, {
-      data: {},
-      width: '600px',
-      height: '600',
-      panelClass: 'mat-dialog-round'
-    });
 
-    dialogRef.afterClosed().subscribe(result => {
-
-    });
-  }
-  logout():void {
-    this.auth.logout();
-  }
 }

@@ -1,0 +1,45 @@
+import { Component, isDevMode } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { LoginEmitter } from '../../emitters/login_emitter';
+import { AuthService } from '../../services/Auth/auth.service';
+import { LoginComponent } from '../auth/login/login.component';
+
+@Component({
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss']
+})
+export class HeaderComponent {
+  title = 'Garage Grader';
+  userLogged: Boolean = !!localStorage.getItem('TOKEN');
+  userName: string | null = localStorage.getItem('USER_NAME') ? localStorage.getItem('USER_NAME') : "";
+  constructor(public dialog: MatDialog, public auth: AuthService) {
+    LoginEmitter.login.subscribe((result: boolean) => {
+      this.userLogged = result;
+      this.userName = localStorage.getItem('USER_NAME') ? localStorage.getItem('USER_NAME') : "";
+    });
+  }
+  ngOnInit() {
+    if (isDevMode()) {
+      // console.warn('Development!');
+    } else {
+      console.warn('Production!');
+    }
+
+  }
+  openDialog(): void {
+    const dialogRef = this.dialog.open(LoginComponent, {
+      data: {},
+      width: '600px',
+      height: '600',
+      panelClass: 'mat-dialog-round'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+
+    });
+  }
+  logout(): void {
+    this.auth.logout();
+  }
+}
