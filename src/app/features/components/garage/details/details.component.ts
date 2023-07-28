@@ -10,6 +10,7 @@ import { GarageService } from 'src/app/features/services/Garage/garage.service';
 })
 export class DetailsComponent implements OnInit {
   garage: Garage;
+  owner:boolean = false;
 
   constructor(private garageService: GarageService, private route: ActivatedRoute) { }
   ngOnInit(): void {
@@ -17,6 +18,10 @@ export class DetailsComponent implements OnInit {
     this.garageService.getGarage(id).subscribe((response: any) => {
       console.log('garage',response.data);
       this.garage = response.data;
+      const user_id = localStorage.getItem("USER_ID");
+      if(user_id){
+        this.owner = this.garage.user_id  == user_id;
+      }
     })
   }
 

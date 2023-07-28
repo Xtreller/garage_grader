@@ -5,6 +5,7 @@ export default interface Garage{
   type:string,
   services:string,
   address:string,
+  user_id:string,
   town:string,
   phone:string,
   favorites:[]
