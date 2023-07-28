@@ -7,4 +7,25 @@
 
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   background: linear-gradient(to right, rgba(251, 194, 235, 1), rgba(166, 193, 238, 1))
-  }
+}
+
+.garage-cover {
+  background-size:cover;
+  background-repeat:no-repeat;
+  width:100vw;
+  height: 30vh;
+}
+#profile-image{
+  margin-left: 30px;
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+  height: 150px;
+  margin-top: 20vh;
+}
+.info-card{
+  padding: 20px;
+  background-color: #f8f9fa;
+}
+// p-4" style="background-color: #f8f9fa;"
+// class="ms-5 d-flex flex-column  " style="width: 150px;margin-top: 20vh;"

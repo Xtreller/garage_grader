@@ -1,18 +1,26 @@
 <!-- <div class="row d-flex justify-content-center align-items-center h-100"> -->
 <div class="col col-lg-9 col-xl-7 " style="width: 100vw;position: absolute;top:0;right: 0;z-index: -1;">
   <div class="card">
-    <div class="rounded-top text-white d-flex flex-row" style="background-color: #000; height:30vh;">
-      <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
-        <img
-          src="https://images.unsplash.com/photo-1475738198235-4b30fc20cff4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHBhbm9yYW1hfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
-          alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2" style="width: 150px; z-index: 1">
-        <button type="button" class="btn btn-outline-dark" data-mdb-ripple-color="dark" style="z-index: 1;">
-          Edit profile
-        </button>
-      </div>
-      <div class="ms-3" style="margin-top: 130px;">
-        <h5>Andy Horwitz</h5>
-        <p>New York</p>
+    <div class="rounded-top text-white d-flex flex-row  garage-cover"
+      [ngStyle]="{ 'background-image': 'url(' +  'https://images.unsplash.com/photo-1475738198235-4b30fc20cff4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHBhbm9yYW1hfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60'+ ')'}">
+      <div class="row">
+        <div class="col">
+          <div id="profile-image">
+            <img
+              src="https://images.unsplash.com/photo-1570071677470-c04398af73ca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Z2FyYWdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
+              alt="Generic placeholder image" class=" rounded-circle img-fluid img-thumbnail mt-4 mb-2"
+              style="width: 300px; height: 300px;  z-index: 1">
+            <button type="button" class="btn btn-outline-dark" data-mdb-ripple-color="dark" style="z-index: 1;">
+              Edit profile
+            </button>
+          </div>
+          <div class="col">
+            <div class="ms-3 text-black" style="z-index: 909999;margin-top: 1vh;">
+              <h5>{{garage.name}}</h5>
+              <p>{{garage.town}}</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="p-4 text-black" style="background-color: #f8f9fa;">
@@ -33,28 +41,27 @@
     </div>
     <div class="card-body p-4 text-black">
       <div class="mb-5">
-        <p class="lead fw-normal mb-1">About</p>
-        <div class="p-4" style="background-color: #f8f9fa;">
-          <p class="font-italic mb-1">Web Developer</p>
-          <p class="font-italic mb-1">Lives in New York</p>
-          <p class="font-italic mb-0">Photographer</p>
+        <p class="lead fw-normal mb-1">Повече за нас</p>
+        <div class="info-card">
+          <p class="font-italic mb-1">Услуги: {{garage.services}}</p>
+          <p class="font-italic mb-1">Тип: {{garage.type}}</p>
+          <p class="font-italic mb-0">{{garage.description}}</p>
         </div>
       </div>
+
       <div class="d-flex justify-content-between align-items-center mb-4">
         <p class="lead fw-normal mb-0">Recent photos</p>
         <p class="mb-0"><a href="#!" class="text-muted">Show all</a></p>
       </div>
-      <div class="row g-2">
-        <div class="col mb-2">
+      <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-2 ">
+        <div class="col">
           <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(112).webp" alt="image 1"
             class="w-100 rounded-3">
         </div>
-        <div class="col mb-2">
+        <div class="col">
           <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(107).webp" alt="image 1"
             class="w-100 rounded-3">
         </div>
-      </div>
-      <div class="row g-2">
         <div class="col">
           <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(108).webp" alt="image 1"
             class="w-100 rounded-3">
@@ -62,6 +69,14 @@
         <div class="col">
           <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(114).webp" alt="image 1"
             class="w-100 rounded-3">
+        </div>
+      </div>
+      <div class="mt-5">
+        <p class="lead fw-normal mb-1 ">Контакти</p>
+        <div class="info-card">
+          <p class="font-italic mb-1">Email: {{garage.email}}</p>
+          <p class="font-italic mb-1">Телефон: {{garage.phone}}</p>
+          <p class="font-italic mb-0">{{garage.town}}</p>
         </div>
       </div>
     </div>
