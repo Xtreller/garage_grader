@@ -16,7 +16,6 @@ export class DetailsComponent implements OnInit {
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.garageService.getGarage(id).subscribe((response: any) => {
-      console.log('garage',response.data);
       this.garage = response.data;
       const user_id = localStorage.getItem("USER_ID");
       if(user_id){

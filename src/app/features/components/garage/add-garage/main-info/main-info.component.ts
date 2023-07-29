@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { ControlContainer, Form, FormBuilder, FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
+import Garage from 'src/app/features/interfaces/Garage/garage.interface';
 
 @Component({
   selector: 'app-main-info',
@@ -9,9 +10,9 @@ import { ControlContainer, Form, FormBuilder, FormControl, FormGroup, FormGroupD
 })
 export class MainInfoComponent implements OnInit {
   // @Input() form: FormGroup;
+  @Input('data') data: Garage;
   parentForm!: FormGroup;
-  mainInfoOpen:boolean = true;
-
+  mainInfoOpen: boolean = true;
   constructor(private fb: FormBuilder, private parent: FormGroupDirective) {
 
   }
@@ -33,5 +34,14 @@ export class MainInfoComponent implements OnInit {
       })
     );
   }
-  get f(){return this.parentForm.controls}
+
+  ngOnChanges(changes: SimpleChanges) {
+    if(changes['data']) {
+      if(this.data) {
+        this.f.patchValue(this.data);
+        this.f.get('mobile_service')?.setValue(this.data.are_mobile_service==1 ? true:false);
+      }
+    }
+  }
+  get f() { return this.parentForm.get('main_info') as FormControl }
 }

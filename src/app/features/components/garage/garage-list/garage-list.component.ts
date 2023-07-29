@@ -36,7 +36,6 @@ export class GarageListComponent {
     }
   }
   deleteGarage(id: number) {
-    console.log(id);
     if (this.rights.delete) {
       this.garageService.deleteGarage(id).subscribe((response: any) => {
         console.log(response);

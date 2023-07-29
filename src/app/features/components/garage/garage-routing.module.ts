@@ -8,8 +8,9 @@ import { DetailsComponent } from './details/details.component';
 
 const routes: Routes = [
   { path: 'garage', component: GarageListComponent },
-  { path: 'my-garages', component: GarageListComponent },
+  { path: 'my-garages', component: GarageListComponent, canActivate: [authGuard] },
   { path: 'garage/add-garage', component: AddGarageComponent, canActivate: [authGuard] },
+  { path: 'garage/edit-garage/:id', component: AddGarageComponent, canActivate: [authGuard] },
   { path: 'garage/details/:id', component: DetailsComponent },
 
 ];

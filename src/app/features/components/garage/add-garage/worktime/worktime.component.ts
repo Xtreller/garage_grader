@@ -1,7 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
 import { ControlContainer, FormArray, FormBuilder, FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { elementAt } from 'rxjs';
+import Garage from 'src/app/features/interfaces/Garage/garage.interface';
 
 @Component({
   selector: 'app-worktime',
@@ -10,9 +11,9 @@ import { elementAt } from 'rxjs';
   viewProviders: [{ provide: ControlContainer, useExisting: FormGroupDirective }]
 })
 export class WorktimeComponent {
-  //  @Input() f:FormControl;
-  //  @Input() form:FormGroup;
-  required: string[] = ['sat_start', 'sat_end', 'sun_start', 'sun_end','always_open'];
+  @Input() data: Garage;
+
+  required: string[] = ['sat_start', 'sat_end', 'sun_start', 'sun_end', 'always_open'];
   parentForm!: FormGroup
   panelOpenState: boolean = false;
   constructor(private parent: FormGroupDirective, private fb: FormBuilder) {
@@ -41,8 +42,8 @@ export class WorktimeComponent {
       })
     );
   }
-  get worktimeControls() {
-    return this.parentForm.controls['worktime'];
+  get f() {
+    return (this.parentForm.get('worktime') as FormControl);
   }
   cheboxChecked(checked: boolean, event: any) {
     if (!checked) {
@@ -64,7 +65,14 @@ export class WorktimeComponent {
         })
       });
     }
-
-
+  }
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['data']) {
+      if (this.data) {
+        console.log(this.data);
+        this.f.patchValue(this.data.always_open);
+        this.f.get('always_open')?.setValue(this.data.always_open == 1 ? true : false);
+      }
+    }
   }
 }

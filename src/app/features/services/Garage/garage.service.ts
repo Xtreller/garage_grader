@@ -7,6 +7,7 @@ import { environment } from 'src/environment/environment';
 })
 export class GarageService {
 
+
   private apiUrl: string = environment.apiUrl;
   constructor(public http: HttpClient, private auth: AuthService) { }
   //ToDo: add data interface
@@ -26,5 +27,8 @@ export class GarageService {
   }
   deleteGarage(id: number) {
     return this.http.delete(this.apiUrl + '/garage/' + id);
+  }
+  updateGarage(id:number,data: any) {
+   return this.http.put(this.apiUrl + '/garage/'+id,data);
   }
 }

@@ -1,13 +1,29 @@
-export default interface Garage{
-  name:string;
-  description:string;
-  email:string,
-  type:string,
-  services:string,
-  address:string,
-  user_id:string,
-  town:string,
-  phone:string,
-  favorites:[]
-  reviews:[]
+export default interface Garage {
+  name: string;
+  description: string;
+  email: string,
+  type: string,
+  services: string,
+  address: string,
+  user_id: string,
+  town: string,
+  phone: string,
+  always_open: number,
+  are_mobile_service: number,
+  favorites: [],
+  reviews: [],
+  fri_end: string,
+  fri_start: string,
+  mon_end: string,
+  mon_start: string,
+  sat_end: string,
+  sat_start: string,
+  sun_end: string,
+  sun_start: string,
+  thu_end: string,
+  thu_start: string,
+  tue_end: string,
+  tue_start: string,
+  wed_end: string,
+  wed_start: string,
 }

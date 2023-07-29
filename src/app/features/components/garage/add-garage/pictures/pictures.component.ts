@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ControlContainer, FormBuilder, FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 
 @Component({
@@ -8,6 +8,7 @@ import { ControlContainer, FormBuilder, FormControl, FormGroup, FormGroupDirecti
   viewProviders: [{ provide: ControlContainer, useExisting: FormGroupDirective }]
 })
 export class PicturesComponent implements OnInit {
+  @Input() data = {};
 
   parentForm!: FormGroup;
   panelOpenState: boolean = false;
