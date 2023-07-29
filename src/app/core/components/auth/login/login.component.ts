@@ -30,10 +30,6 @@ export class LoginComponent {
       height: '600',
       panelClass: 'mat-dialog-round'
     });
-
-    dialogRef.afterClosed().subscribe(result => {
-
-    });
   }
   login(){
     if(this.form.valid){
@@ -44,7 +40,9 @@ export class LoginComponent {
             localStorage.setItem('USER_ID',response.user.id);
             localStorage.setItem('USER_EMAIL',response.user.email);
             localStorage.setItem('USER_NAME',response.user.name);
-            //TODO: add roles;
+            if(response.user.role.name){
+              localStorage.setItem('USER_ROLE',response.user.role.name);
+            }
             localStorage.setItem('USER',JSON.stringify(response.user));
             LoginEmitter.login.emit(true);
 
