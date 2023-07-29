@@ -10,18 +10,19 @@ import { WorktimeComponent } from './add-garage/worktime/worktime.component';
 import { GarageListComponent } from './garage-list/garage-list.component';
 import { GarageRoutingModule } from './garage-routing.module';
 import { DetailsComponent } from './details/details.component';
+import { TruncateTextPipe } from 'src/app/shared/pipes/truncate-text.pipe';
 
 
 
 @NgModule({
-  declarations: [GarageListComponent, AddGarageComponent, WorktimeComponent, MainInfoComponent, PicturesComponent, DetailsComponent],
+  declarations: [GarageListComponent, AddGarageComponent, WorktimeComponent, MainInfoComponent, PicturesComponent, DetailsComponent,TruncateTextPipe],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
     GarageRoutingModule,
-    MatTimepickerModule
+    MatTimepickerModule,
   ],
   exports:[GarageListComponent]
 })

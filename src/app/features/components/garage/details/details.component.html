@@ -4,27 +4,28 @@
     <div class="rounded-top text-white d-flex flex-row  garage-cover"
       [ngStyle]="{ 'background-image': 'url(' +  'https://images.unsplash.com/photo-1475738198235-4b30fc20cff4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHBhbm9yYW1hfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60'+ ')'}">
       <div class="row">
-        <div class="col">
+        <div class="col ">
           <div id="profile-image">
             <img
               src="https://images.unsplash.com/photo-1570071677470-c04398af73ca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Z2FyYWdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
               alt="Generic placeholder image" class=" rounded-circle img-fluid img-thumbnail mt-4 mb-2"
-              style="width: 300px; height: 300px;  z-index: 1">
+              style="width: 100%; height: auto;  z-index: 1">
             <button type="button" class="btn btn-outline-dark" data-mdb-ripple-color="dark" style="z-index: 1;" *ngIf="owner">
               Edit profile
             </button>
           </div>
-          <div class="col">
-            <div class="ms-3 text-black" style="z-index: 909999;margin-top: 1vh;">
-              <h5>{{garage.name}}</h5>
-              <p>{{garage.town}}</p>
-            </div>
-          </div>
+
         </div>
       </div>
     </div>
-    <div class="p-4 text-black" style="background-color: #f8f9fa;">
+    <div class="p-4 row text-black" style="background-color: #f8f9fa;">
       <div class="d-flex justify-content-end text-center py-1">
+        <div class="d-flex justify-content-start w-50 ps-5">
+          <div class="ms-3 text-black float-right" style="z-index: 9099999999;">
+            <h2>{{garage.name}}</h2>
+            <p>{{garage.town}}</p>
+          </div>
+        </div>
         <div>
           <p class="mb-1 h5">253</p>
           <p class="small text-muted mb-0">Photos</p>

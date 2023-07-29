@@ -1,23 +1,19 @@
-<div class="card-container">
-  <div class="card-deck">
-    <div class="card mb-3 shadow-sm" *ngFor="let garage of garageList">
-      <div class="d-flex flex-row ">
+<div class="card mb-3 shadow-sm" *ngFor="let garage of garageList">
+  <div class="d-flex flex-row ">
 
-        <img
-          src="https://images.unsplash.com/photo-1570129476815-ba368ac77013?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Z2FyYWdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
-          class="card-img-left col-5" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">{{garage.name}}</h5>
-          <p class="card-text align-self-middle">{{garage.description}}</p>
-          <p class="card-text align-self-middle ">{{garage.type}}</p>
-          <p class="card-text align-self-middle">{{garage.services}}</p>
-          <p class="card-text align-self-middle">{{garage.description}}</p>
-        </div>
-        <div class="d-flex flex-column justify-content-end align-items-center   border-success pe-3 pb-3">
-          <!-- <small class="text-muted">{{garage.created_at}}</small> -->
-          <a mat-raised-button color="primary" class="btn-rad-20" [routerLink]="['/garage/details', garage.id]">Детайли</a>
-        </div>
-      </div>
+    <img
+      src="https://images.unsplash.com/photo-1570129476815-ba368ac77013?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Z2FyYWdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
+      class="card-img-left col-5" alt="...">
+    <div class="card-content">
+      <h5 class="h2 font-weight-italic font-italic bold">{{garage.name}}</h5>
+      <p class="card-text align-self-middle">{{garage.description | truncate:80}}</p>
+      <p class="card-text align-self-middle ">{{garage.type}}</p>
+      <p class="card-text align-self-middle">{{garage.services}}</p>
+      <p class="card-text align-self-middle">{{garage.description | truncate:80}}</p>
+    </div>
+    <div class="d-flex flex-column justify-content-end align-items-center   border-success pe-3 pb-3">
+      <!-- <small class="text-muted">{{garage.created_at}}</small> -->
+      <a mat-raised-button color="primary" class="btn-rad-20" [routerLink]="['/garage/details', garage.id]">Детайли</a>
     </div>
   </div>
 </div>

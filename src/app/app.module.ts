@@ -13,6 +13,7 @@ import { InfoComponent } from './shared/components/info/info.component';
 import { LoadingInterceptor } from './shared/interceptors/loading.interceptor';
 import { LoadingComponent } from './shared/components/loading/loading.component';
 import { HeaderComponent } from './core/components/header/header.component';
+import { TruncateTextPipe } from './shared/pipes/truncate-text.pipe';
 
 
 @NgModule({
@@ -20,7 +21,7 @@ import { HeaderComponent } from './core/components/header/header.component';
     AppComponent,
     InfoComponent,
     LoadingComponent,
-    HeaderComponent
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,13 +31,12 @@ import { HeaderComponent } from './core/components/header/header.component';
     HttpClientModule,
     AuthModule,
     MaterialModule,
-    GarageModule,
-
+    GarageModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
