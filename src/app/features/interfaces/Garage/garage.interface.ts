@@ -1,4 +1,5 @@
 export default interface Garage {
+  id: number;
   name: string;
   description: string;
   email: string,

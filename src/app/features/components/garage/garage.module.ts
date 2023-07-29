@@ -11,6 +11,7 @@ import { GarageListComponent } from './garage-list/garage-list.component';
 import { GarageRoutingModule } from './garage-routing.module';
 import { DetailsComponent } from './details/details.component';
 import { TruncateTextPipe } from 'src/app/shared/pipes/truncate-text.pipe';
+import { ReviewModule } from '../review/review.module';
 
 
 
@@ -23,6 +24,7 @@ import { TruncateTextPipe } from 'src/app/shared/pipes/truncate-text.pipe';
     MaterialModule,
     GarageRoutingModule,
     MatTimepickerModule,
+    ReviewModule
   ],
   exports:[GarageListComponent]
 })
