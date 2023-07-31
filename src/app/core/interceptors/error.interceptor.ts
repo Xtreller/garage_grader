@@ -25,13 +25,15 @@ export class ErrorInterceptor implements HttpInterceptor {
           });
         }
         if (error.status == 422) {
+          console.log(error);
           this.dialog.open(InfoComponent, {
             data: {
               messages: error.error,
               status: error.status
             },
             width:'700px',
-            height:'500px'
+            minHeight:"400px",
+            height:'auto'
           })
         }
 

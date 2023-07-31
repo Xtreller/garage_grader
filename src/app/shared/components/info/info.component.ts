@@ -20,6 +20,7 @@ export class InfoComponent {
   ) {
     this.messages = this.data.messages;
     this.status = this.data.status;
+    console.log(this.data);
     if (this.data.link) {
       this.redirectLink = this.data.link;
     }

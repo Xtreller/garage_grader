@@ -14,21 +14,20 @@ import { InfoComponent } from 'src/app/shared/components/info/info.component';
 export class AddReviewComponent {
   @Input() garage_id: number;
   @Output() refresh = new EventEmitter<boolean>();
-  review: FormControl = new FormControl('', [Validators.required,Validators.minLength(5)]);
+  review: FormControl = new FormControl('', [Validators.required, Validators.minLength(5)]);
   user_name: string | null = localStorage.getItem('USER_NAME');
   user_id: number | null = Number(localStorage.getItem('USER_ID'));
-  constructor(private reviewService: ReviewService,private modal:MatDialog) { }
-  submitReview() {
 
-    if (this.review.valid) {
-      let data: PostReviewData = {
-        'content': this.review.value,
-        'garage_id': this.garage_id,
-        'user_id': this.user_id
-      }
-      this.reviewService.postReview(data).subscribe((response: any) => {
-        this.refresh.emit(true);
-      });
+  constructor(private reviewService: ReviewService, private modal: MatDialog) { }
+
+  submitReview() {
+    let data: PostReviewData = {
+      'content': this.review.value,
+      'garage_id': this.garage_id,
+      'user_id': this.user_id
     }
+    this.reviewService.postReview(data).subscribe((response: any) => {
+      this.refresh.emit(true);
+    });
   }
 }
