@@ -1,8 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, NgModel, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { PostReviewData } from 'src/app/features/interfaces/Reviews/postReviewData.interface copy';
 import { Review } from 'src/app/features/interfaces/Reviews/review.interface';
 import { ReviewService } from 'src/app/features/services/Review/review.service';
+import { InfoComponent } from 'src/app/shared/components/info/info.component';
 
 @Component({
   selector: 'app-add-review',
@@ -15,8 +17,9 @@ export class AddReviewComponent {
   review: FormControl = new FormControl('', [Validators.required,Validators.minLength(5)]);
   user_name: string | null = localStorage.getItem('USER_NAME');
   user_id: number | null = Number(localStorage.getItem('USER_ID'));
-  constructor(private reviewService: ReviewService) { }
+  constructor(private reviewService: ReviewService,private modal:MatDialog) { }
   submitReview() {
+
     if (this.review.valid) {
       let data: PostReviewData = {
         'content': this.review.value,

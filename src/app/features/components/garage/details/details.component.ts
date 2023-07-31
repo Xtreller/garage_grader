@@ -13,6 +13,9 @@ export class DetailsComponent {
   owner: boolean = false;
 
   constructor(private garageService: GarageService, private route: ActivatedRoute) {
+    this.getData();
+  }
+  getData() {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.garageService.getGarage(id).subscribe((response: any) => {
       this.garage = response.data;
@@ -23,7 +26,7 @@ export class DetailsComponent {
     })
   }
   ngOnChanges(changes: SimpleChanges) {
-
+    this.getData()
   }
 
 

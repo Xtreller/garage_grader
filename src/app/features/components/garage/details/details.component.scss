@@ -9,25 +9,36 @@
   background: linear-gradient(to right, rgba(251, 194, 235, 1), rgba(166, 193, 238, 1))
 }
 
+.garage-details {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
 .garage-cover {
-  background-size:cover;
-  background-repeat:no-repeat;
-  width:100vw;
+  background-size: cover;
+  background-repeat: no-repeat;
+  // width:;
   height: 30vh;
 }
-#profile-image{
+
+#profile-image {
   // margin-left: 100px;
   position: relative;
-  left:50px;
+  left: 50px;
   display: flex;
   flex-direction: column;
   width: 50%;
   height: auto;
   margin-top: 20vh;
 }
-.info-card{
+
+.info-card {
   padding: 20px;
   background-color: #f8f9fa;
 }
+
 // p-4" style="background-color: #f8f9fa;"
 // class="ms-5 d-flex flex-column  " style="width: 150px;margin-top: 20vh;"

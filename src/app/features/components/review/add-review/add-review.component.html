@@ -1,13 +1,13 @@
-<div class="d-flex flex-start mt-3">
+<div class="d-flex justify-content-center mt-3">
   <div
-    class="rounded-circle border border-4 border-secondary d-sm-flex justify-content-center align-items-center  bg-danger text-white  me-4 "
-    style="width:60px;height:60px">
+    class="rounded-circle border border-4 border-secondary d-none d-md-flex justify-content-center align-items-center  bg-danger text-white  me-3 "
+    style="width:50px;height:50px;">
     <div class="pt-2 h4">
       T
       <!-- {{this.userName[0]}} -->
     </div>
   </div>
-  <div class="card w-100">
+  <div class="card w-100 m-auto">
     <div class="card-body p-4">
       <div class="">
         <div class="d-flex flex-row ">
@@ -20,19 +20,22 @@
           <mat-form-field class="form-outline form-white w-100 mb-2" appearance="outline" [hideRequiredMarker]="true">
             <mat-label>Коментар</mat-label>
             <input matInput placeholder="Тип" [formControl]="review" placeholder="Добави коментар...">
-            <mat-error class="mt-1" *ngIf="this.review.hasError('minLength') && (this.review.dirty || this.review.touched) ">
+            <mat-error class="mt-1"
+              *ngIf="this.review.hasError('minLength') && (this.review.dirty || this.review.touched) ">
               Коментара трябва да е поне 5 символа!
             </mat-error>
           </mat-form-field>
         </form>
 
-        <div class="d-flex justify-content-end text-right w-100  ">
+        <div class="d-flex justify-content-end align-items-center w-100  ">
           <!-- <div class="d-flex align-items-center">
             <a href="#!" class="link-muted me-2"><i class="fas fa-thumbs-up me-1"></i>158</a>
             <a href="#!" class="link-muted"><i class="fas fa-thumbs-down me-1"></i>13</a>
           </div> -->
-          <button mat-raised-button color="primary" class="btn px-5 py-1 col-5  btn-rad-20 w-25 "
-            (click)="submitReview()" type="submit">Изпрати</button>
+
+          <button mat-raised-button color="primary" class="btn px-2 py-1  btn-rad-20 w-25  text-center"
+            (click)="submitReview()" type="submit"><mat-icon class="w-25 ps-3 ps-md-0">send</mat-icon><span
+              class="d-none d-md-inline">Изпрати</span></button>
         </div>
       </div>
     </div>

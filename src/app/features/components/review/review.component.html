@@ -1,34 +1,31 @@
-<div class="row d-flex justify-content-center my-5">
+<div class="row d-flex justify-content-center align-content-center my-5 pt-5 px-4 px-md-0 w-100">
   <div class="col-md-11 col-lg-9 col-xl-7">
 
-    <div class="d-flex flex-start mt-3" *ngFor="let review of reviews">
+    <div class="d-flex flex-start justify-content-center mt-3 " *ngFor="let review of reviews">
       <!-- <img class="rounded-circle shadow-1-strong me-3" src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(31).webp"
         alt="avatar" width="65" height="65" /> -->
       <div
-        class="rounded-circle border border-4 border-secondary d-sm-flex justify-content-center align-items-center  bg-danger text-white  me-4 "
-        style="width:60px;height:60px">
+        class="rounded-circle border border-4 border-secondary d-none d-md-flex justify-content-center align-items-center  bg-danger text-white me-3 "
+        style="width:50px;height:50px;">
         <div class="pt-2 h4">
           T
         </div>
       </div>
       <div class="card w-100">
-        <div class="card-body p-4">
+        <div class="card-body p-4 pt-2 pe-0">
           <div class="">
-            <div class="row flex-row justify-content-between w-100">
-
-              <h5 class="col">{{review.user.name}}</h5>
-              <p class="small col text-end">
+            <div class="d-flex flex-row justify-content-between align-items-center w-100 ">
+              <h5 class="col-4">{{review.user.name}}</h5>
+              <p class="small col-8  d-flex align-items-center justify-content-end">
                 <span>{{review.created_at | date:'MMMM d, y h:mm a' }}</span>
                 <span *ngIf="review.user_id == user_id || revew.user.is_admin">
-
-                  <button mat-icon-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
+                  <button mat-icon-button [matMenuTriggerFor]="menu" class="m-0"><mat-icon>more_vert</mat-icon></button>
                   <mat-menu #menu="matMenu">
                     <button mat-menu-item>Изтрий</button>
-                    <button mat-menu-item>Item 2</button>
+                    <button mat-menu-item>Редактирай</button>
                   </mat-menu>
                 </span>
               </p>
-
             </div>
             <p class="float-right">
               {{review.content}}
