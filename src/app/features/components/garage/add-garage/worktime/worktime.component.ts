@@ -69,7 +69,6 @@ export class WorktimeComponent {
   ngOnChanges(changes: SimpleChanges) {
     if (changes['data']) {
       if (this.data) {
-        console.log(this.data);
         this.f.patchValue(this.data.always_open);
         this.f.get('always_open')?.setValue(this.data.always_open == 1 ? true : false);
       }
