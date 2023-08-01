@@ -21,8 +21,8 @@
                 <span *ngIf="review.user_id == user_id || revew.user.is_admin">
                   <button mat-icon-button [matMenuTriggerFor]="menu" class="m-0"><mat-icon>more_vert</mat-icon></button>
                   <mat-menu #menu="matMenu">
-                    <button mat-menu-item>Изтрий</button>
-                    <button mat-menu-item>Редактирай</button>
+                    <button mat-menu-item (click)="deleteReveiew(review.id)">Изтрий</button>
+                    <button mat-menu-item (click)="editReview(review.id,review.content)">Редактирай</button>
                   </mat-menu>
                 </span>
               </p>

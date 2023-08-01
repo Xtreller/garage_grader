@@ -13,8 +13,7 @@ import { InfoComponent } from './shared/components/info/info.component';
 import { LoadingInterceptor } from './shared/interceptors/loading.interceptor';
 import { LoadingComponent } from './shared/components/loading/loading.component';
 import { HeaderComponent } from './core/components/header/header.component';
-import { TruncateTextPipe } from './shared/pipes/truncate-text.pipe';
-import { ReviewComponent } from './features/components/review/review.component';
+import { ConfirmationComponent } from './shared/components/confirmation/confirmation.component';
 
 
 @NgModule({
@@ -23,6 +22,7 @@ import { ReviewComponent } from './features/components/review/review.component';
     InfoComponent,
     LoadingComponent,
     HeaderComponent,
+    ConfirmationComponent
   ],
   imports: [
     BrowserModule,

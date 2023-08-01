@@ -4,6 +4,7 @@ import { ReviewComponent } from './review.component';
 import { AddReviewComponent } from './add-review/add-review.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from 'src/app/shared/material/material.module';
+import { EditReviewComponent } from './edit-review/edit-review.component';
 
 
 
@@ -11,6 +12,7 @@ import { MaterialModule } from 'src/app/shared/material/material.module';
   declarations: [
     ReviewComponent,
     AddReviewComponent,
+    EditReviewComponent
   ],
   imports: [
     FormsModule,

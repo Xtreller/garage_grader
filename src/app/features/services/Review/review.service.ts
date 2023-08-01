@@ -8,6 +8,8 @@ import { PostReviewData } from '../../interfaces/Reviews/postReviewData.interfac
   providedIn: 'root'
 })
 export class ReviewService {
+
+
   apiUrl: string = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
@@ -16,5 +18,11 @@ export class ReviewService {
   }
   postReview(data: PostReviewData) {
     return this.http.post(this.apiUrl + '/reviews', data);
+  }
+  editReview(id: number, content: string) {
+    return this.http.put(this.apiUrl + '/reviews/' + id,{'content':content});
+  }
+  deleteReview(id: number) {
+    return this.http.delete(this.apiUrl + '/reviews/' + id);
   }
 }
