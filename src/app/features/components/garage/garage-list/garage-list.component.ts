@@ -4,6 +4,9 @@ import Garage from 'src/app/features/interfaces/Garage/garage.interface';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Rights } from 'src/app/core/interfaces/rights';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { EditReviewComponent } from '../../review/edit-review/edit-review.component';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationComponent } from 'src/app/shared/components/confirmation/confirmation.component';
 
 @Component({
   selector: 'app-garage-list',
@@ -16,7 +19,7 @@ export class GarageListComponent {
 
   user: string | null = localStorage.getItem('USER');
   rights: Rights;
-  constructor(private garageService: GarageService, private router: Router, private snackbar: MatSnackBar) {
+  constructor(private garageService: GarageService, private router: Router, private snackbar: MatSnackBar, private dialog: MatDialog) {
     this.getData();
   }
   getData() {
@@ -37,11 +40,15 @@ export class GarageListComponent {
   }
   deleteGarage(id: number) {
     if (this.rights.delete) {
-      this.garageService.deleteGarage(id).subscribe((response: any) => {
-        console.log(response);
-        if (response.status = 'ok') {
-          this.getData();
-          this.snackbar.open('Гаражът е изтрит успешно!');
+      let confirm = this.dialog.open(ConfirmationComponent);
+      confirm.afterClosed().subscribe((result: boolean) => {
+        if (result) {
+          this.garageService.deleteGarage(id).subscribe((response: any) => {
+            if (response.status = 'ok') {
+              this.getData();
+              this.snackbar.open('Гаражът е изтрит успешно!',"",{duration:2500});
+            }
+          })
         }
       })
     }
