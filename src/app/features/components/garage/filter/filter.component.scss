@@ -1,0 +1,32 @@
+.filter-container{
+  height: 60px;
+  border-radius: 20em !important;
+  margin-bottom: 10px;
+}
+.filter-input{
+  padding-left: 5px;
+  border: 2px solid darkgrey;
+  border-radius: 10em !important;
+  overflow: hidden;
+}
+.filter-input>input{
+  height: 35px;
+  text-align: start;
+  border: 0;
+  width: 100%;
+}
+
+input:focus{
+  outline: none;
+}
+::-webkit-input-placeholder { /* Edge */
+  padding-left:15px;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  padding-left:15px;
+}
+
+::placeholder {
+  padding-left:15px;
+}

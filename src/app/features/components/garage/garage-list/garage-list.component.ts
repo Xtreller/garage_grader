@@ -38,6 +38,10 @@ export class GarageListComponent {
       })
     }
   }
+  setGarages(data: Garage[]) {
+    this.garageList = data;
+
+  }
   deleteGarage(id: number) {
     if (this.rights.delete) {
       let confirm = this.dialog.open(ConfirmationComponent);
@@ -46,7 +50,7 @@ export class GarageListComponent {
           this.garageService.deleteGarage(id).subscribe((response: any) => {
             if (response.status = 'ok') {
               this.getData();
-              this.snackbar.open('Гаражът е изтрит успешно!',"",{duration:2500});
+              this.snackbar.open('Гаражът е изтрит успешно!', "", { duration: 2500 });
             }
           })
         }

@@ -12,11 +12,12 @@ import { GarageRoutingModule } from './garage-routing.module';
 import { DetailsComponent } from './details/details.component';
 import { TruncateTextPipe } from 'src/app/shared/pipes/truncate-text.pipe';
 import { ReviewModule } from '../review/review.module';
+import { FilterComponent } from './filter/filter.component';
 
 
 
 @NgModule({
-  declarations: [GarageListComponent, AddGarageComponent, WorktimeComponent, MainInfoComponent, PicturesComponent, DetailsComponent,TruncateTextPipe],
+  declarations: [GarageListComponent, AddGarageComponent, WorktimeComponent, MainInfoComponent, PicturesComponent, DetailsComponent,TruncateTextPipe, FilterComponent],
   imports: [
     CommonModule,
     FormsModule,

@@ -32,7 +32,7 @@ export class ErrorInterceptor implements HttpInterceptor {
               status: error.status
             },
             width:'700px',
-            minHeight:"400px",
+            minHeight:"300px",
             height:'auto'
           })
         }

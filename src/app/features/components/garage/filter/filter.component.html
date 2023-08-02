@@ -1,0 +1,33 @@
+<div class="card filter-container">
+  <form [formGroup]="filter"
+    class="d-flex flex-row justify-content-around align-items-center align-self-center w-100 mt-1">
+    <!-- <mat-form-field class=" btn-rad-20 col-3" appearance="outline"> -->
+    <div class="filter-input col-3">
+      <input type="text" placeholder="Име" formControlName="name" aria-label="Number" [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="optionSelected()">
+        <mat-option *ngFor="let option of filteredGarages" [value]="option">
+          {{option}}
+        </mat-option>
+      </mat-autocomplete>
+    </div>
+    <div class="filter-input col-3">
+      <input matInput placeholder="Тип" formControlName="type" [matAutocomplete]="type">
+      <mat-autocomplete #type="matAutocomplete" (optionSelected)="optionSelected()">
+        <mat-option *ngFor="let option of filteredTypes" [value]="option">
+          {{option}}
+        </mat-option>
+      </mat-autocomplete>
+    </div>
+    <div class="filter-input col-3">
+      <input matInput placeholder="Град" formControlName="town" [matAutocomplete]="town">
+      <mat-autocomplete #town="matAutocomplete" (optionSelected)="optionSelected()">
+        <mat-option *ngFor="let option of filteredTowns" [value]="option">
+          {{option}}
+        </mat-option>
+      </mat-autocomplete>
+    </div>
+    <div class="col-2 align-self-middle  text-end me-2">
+      <button mat-icon-button class="text-muted"><mat-icon>search</mat-icon></button>
+    </div>
+  </form>
+</div>

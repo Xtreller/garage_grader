@@ -2,6 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthService } from 'src/app/core/services/Auth/auth.service';
 import { environment } from 'src/environment/environment';
+import { GarageFilter } from '../../interfaces/Garage/garage-filter.interface';
+import { map } from 'rxjs';
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -22,6 +26,13 @@ export class GarageService {
       return this.http.get(this.apiUrl + '/garage');
     }
   }
+  filterGarages(filter:GarageFilter){
+    return this.http.post(this.apiUrl + '/garages/filter',filter).pipe(map((response:any)=>response.data));
+  }
+  getGaragesNames() {
+      return this.http.get(this.apiUrl + '/garage/names').pipe(map((response:any)=>response.data));
+  }
+
   addGarage(data: any) {
     return this.http.post(this.apiUrl + '/garage/' + this.auth.getLoggedUserId(), data);
   }
