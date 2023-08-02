@@ -41,7 +41,7 @@
     </mat-form-field>
     <mat-form-field class="form-outline form-white w-100 mb-2" appearance="outline">
       <mat-label>Телефон</mat-label>
-      <input matInput placeholder="Телефон" formControlName="phone">
+      <input matInput placeholder="Телефон" id="phone" type="number" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" formControlName="phone">
       <mat-error class="mt-1"
         *ngIf="this.parentForm.get('phone')?.hasError('phone') && (this.parentForm.get('phone')?.dirty || this.parentForm.get('phone')?.touched) ">
         Моля попълнете име на гаража!
