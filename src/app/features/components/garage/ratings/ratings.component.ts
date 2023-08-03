@@ -13,7 +13,7 @@ export class RatingsComponent implements OnInit {
   rating: FormGroup;
   constructor(private fb: FormBuilder, private ratingService: RatingService) {
     this.rating = this.fb.group({
-      rate:new FormControl()
+      rate:new FormControl(0)
     })
   }
   get f(){
@@ -27,7 +27,7 @@ export class RatingsComponent implements OnInit {
         user_id: Number(localStorage.getItem('USER_ID')),
         rate:0
       }
-      // data = Object.assign(data, this.rating.value)
+      data = Object.assign(data, this.rating.value)
       console.log(this.rating.value);
       console.log(data);
       this.ratingService.rate(data).subscribe((response: Response) => {

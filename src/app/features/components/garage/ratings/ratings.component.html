@@ -1,14 +1,14 @@
-<form [formGroup]="rating" >
-  <mat-radio-group aria-label="Select an option" class="rating z-3  h-25" formControlName="rate">
-    <mat-radio-button  value="1" type="checkbox"  hidden  class="star-radio-btn"></mat-radio-button>
-    <mat-label  class="star-label" for="r1"></mat-label>
-    <mat-radio-button  value="2" type="checkbox"  hidden  class="star-radio-btn"></mat-radio-button>
-    <mat-label  class="star-label" for="r2"></mat-label>
-    <mat-radio-button  value="3" type="checkbox"  hidden  class="star-radio-btn"></mat-radio-button>
-    <mat-label  class="star-label" for="r3"></mat-label>
-    <mat-radio-button  value="4" type="checkbox"  hidden  class="star-radio-btn"></mat-radio-button>
-    <mat-label  class="star-label" for="r4"></mat-label>
-    <mat-radio-button  value="5" type="checkbox"  hidden  class="star-radio-btn"></mat-radio-button>
-    <mat-label  class="star-label" for="r5"></mat-label>
-  </mat-radio-group>
-</form>
+<div class="d-flex justify-content-end">
+  <form [formGroup]="rating" class="rating z-3  h-25">
+    <input formControlName="rate" type="radio" value="5" id="r1">
+    <label for="r1"></label>
+    <input formControlName="rate" type="radio" value="4" id="r2">
+    <label for="r2"></label>
+    <input formControlName="rate" type="radio" value="3" id="r3">
+    <label for="r3"></label>
+    <input formControlName="rate" type="radio" value="2" id="r4">
+    <label for="r4"></label>
+    <input formControlName="rate" type="radio" value="1" id="r5">
+    <label for="r5"></label>
+  </form>
+</div>
