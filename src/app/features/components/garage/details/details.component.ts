@@ -28,6 +28,9 @@ export class DetailsComponent {
   ngOnChanges(changes: SimpleChanges) {
     this.getData()
   }
+  ratingChanged($event:any){
+    console.log($event);
+  }
 
 
 }

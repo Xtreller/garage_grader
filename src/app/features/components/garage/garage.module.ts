@@ -13,11 +13,12 @@ import { DetailsComponent } from './details/details.component';
 import { TruncateTextPipe } from 'src/app/shared/pipes/truncate-text.pipe';
 import { ReviewModule } from '../review/review.module';
 import { FilterComponent } from './filter/filter.component';
+import { RatingsComponent } from './ratings/ratings.component';
 
 
 
 @NgModule({
-  declarations: [GarageListComponent, AddGarageComponent, WorktimeComponent, MainInfoComponent, PicturesComponent, DetailsComponent,TruncateTextPipe, FilterComponent],
+  declarations: [GarageListComponent, AddGarageComponent, WorktimeComponent, MainInfoComponent, PicturesComponent, DetailsComponent,TruncateTextPipe, FilterComponent, RatingsComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -27,6 +28,7 @@ import { FilterComponent } from './filter/filter.component';
     MatTimepickerModule,
     ReviewModule
   ],
+  // schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports:[GarageListComponent]
 })
 export class GarageModule { }

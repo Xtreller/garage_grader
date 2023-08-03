@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -14,6 +14,7 @@ import { LoadingInterceptor } from './shared/interceptors/loading.interceptor';
 import { LoadingComponent } from './shared/components/loading/loading.component';
 import { HeaderComponent } from './core/components/header/header.component';
 import { ConfirmationComponent } from './shared/components/confirmation/confirmation.component';
+import { MAT_RADIO_DEFAULT_OPTIONS } from '@angular/material/radio';
 
 
 @NgModule({
@@ -34,9 +35,11 @@ import { ConfirmationComponent } from './shared/components/confirmation/confirma
     MaterialModule,
     GarageModule
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
+    { provide: MAT_RADIO_DEFAULT_OPTIONS, useValue: { color: 'accent' }, }
   ],
   bootstrap: [AppComponent],
 })
