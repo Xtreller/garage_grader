@@ -7,10 +7,14 @@ import { LoginEmitter } from '../../emitters/login_emitter';
   providedIn: 'root'
 })
 export class AuthService {
+
   private apiUrl:string = environment.apiUrl ;
   constructor(public http:HttpClient) { }
   isLogged(){
     return !!localStorage.getItem('TOKEN');
+  }
+  getToken() {
+   return localStorage.getItem('TOKEN');
   }
   getLoggedUserId(){
     let user = localStorage.getItem('USER');
@@ -33,4 +37,5 @@ export class AuthService {
     LoginEmitter.login.emit(false);
 
   }
+
 }

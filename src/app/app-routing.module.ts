@@ -5,7 +5,6 @@ import { GarageListComponent } from './features/components/garage/garage-list/ga
 
 const routes: Routes = [
   { path: '', component: GarageListComponent },
-  { path: 'add-garage', component: AddGarageComponent },
 
 ];
 

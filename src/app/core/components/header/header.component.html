@@ -5,7 +5,7 @@
 
   <a routerLink="/" class="h4  text-white " style="text-decoration: none;">{{title}}</a>
   <div class="spacer"></div>
-  <button mat-flat-button routerLink="/add-garage" class="me-3 bg-dark text-white btn-rad-20">
+  <button mat-flat-button routerLink="/garage/add-garage" class="me-3 bg-dark text-white btn-rad-20">
     <mat-icon>add_circle_outline</mat-icon>
     <span class="d-none d-md-inline">Добави</span>
   </button>
@@ -23,8 +23,12 @@
         <mat-icon>person_outline</mat-icon>
         <span>Профил</span>
       </button>
+      <button mat-menu-item *ngIf="role == 'admin'">
+        <mat-icon>person_outline</mat-icon>
+        <span>Админски панел</span>
+      </button>
       <button mat-menu-item>
-        <mat-icon>favorite_border</mat-icon>
+        <mat-icon>bookmark</mat-icon>
         <span>Запазени</span>
       </button>
       <a mat-menu-item *ngIf="role == 'owner'" routerLink="/my-garages">

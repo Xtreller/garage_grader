@@ -10,15 +10,22 @@ import { Observable, catchError, throwError } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { InfoComponent } from 'src/app/shared/components/info/info.component';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
 
-  constructor(private snackbar:MatSnackBar,private dialog:MatDialog) { }
+  constructor(private snackbar:MatSnackBar,private dialog:MatDialog,private router:Router) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
+        if (error.status === 401) {
+          this.snackbar.open('Нямате достъп до този ресурс', '', {
+            duration: 3000
+          });
+          this.router.navigate(['/']);
+        }
         if (error.status === 500) {
           this.snackbar.open('Възникна сървърна грешка. Администраторите са уведомени.', '', {
             duration: 5000

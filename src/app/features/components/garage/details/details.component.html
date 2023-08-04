@@ -19,7 +19,7 @@
     <div class="my-4 row text-black card-body " style="background-color: #f8f9fa;">
       <div class="row  py-1">
         <div class="d-flex justify-content-end col-7">
-          <div class="ms-3 text-black z-3" >
+          <div class="ms-3 text-black z-3">
             <h2>{{garage.name}}</h2>
             <p>{{garage.town}}</p>
           </div>
@@ -31,15 +31,15 @@
               <p class="small text-muted mb-0">Photos</p>
             </div>
             <div class="px-3">
-              <p class="mb-1 h5">1026</p>
-              <p class="small text-muted mb-0">Followers</p>
+              <p class="mb-1 h5">{{garage.reviews?.length}}</p>
+              <p class="small text-muted mb-0">Reviews</p>
             </div>
             <div>
-              <p class="mb-1 h5">478</p>
-              <p class="small text-muted mb-0">Following</p>
+              <p class="mb-1 h5">{{garage.ratings.length}}</p>
+              <p class="small text-muted mb-0">Ratings</p>
             </div>
           </div>
-          <app-ratings [garage_id]="garage.id" class="justify-content-end"></app-ratings>
+          <app-ratings [garage_id]="garage" class="justify-content-end"></app-ratings>
 
         </div>
       </div>
@@ -80,8 +80,8 @@
       <div class="mt-5">
         <p class="lead fw-normal mb-1 ">Контакти</p>
         <div class="info-card">
-          <p class="font-italic mb-1">Email: {{garage.email}}</p>
-          <p class="font-italic mb-1">Телефон: {{garage.phone}}</p>
+          <p class="font-italic mb-1">Email: <a href="{{'mailto:'+garage.email}}"> {{garage.email}}</a> </p>
+          <p class="font-italic mb-1">Телефон: <a href="{{'tel:'+garage.phone}}"> {{garage.phone}}</a></p>
           <p class="font-italic mb-0">{{garage.town}}</p>
         </div>
       </div>

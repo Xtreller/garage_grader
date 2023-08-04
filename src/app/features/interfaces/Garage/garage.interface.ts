@@ -13,6 +13,7 @@ export default interface Garage {
   are_mobile_service: number,
   favorites: [],
   reviews: [],
+  ratings: [];
   fri_end: string,
   fri_start: string,
   mon_end: string,

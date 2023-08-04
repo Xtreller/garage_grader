@@ -15,6 +15,7 @@ import { LoadingComponent } from './shared/components/loading/loading.component'
 import { HeaderComponent } from './core/components/header/header.component';
 import { ConfirmationComponent } from './shared/components/confirmation/confirmation.component';
 import { MAT_RADIO_DEFAULT_OPTIONS } from '@angular/material/radio';
+import { TokenInterceptor } from './core/interceptors/token.interceptor';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { MAT_RADIO_DEFAULT_OPTIONS } from '@angular/material/radio';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
     { provide: MAT_RADIO_DEFAULT_OPTIONS, useValue: { color: 'accent' }, }
   ],

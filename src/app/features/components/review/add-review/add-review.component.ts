@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormControl, NgModel, Validators } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { LoginComponent } from 'src/app/core/components/auth/login/login.component';
+import { AuthService } from 'src/app/core/services/Auth/auth.service';
 import { PostReviewData } from 'src/app/features/interfaces/Reviews/postReviewData.interface copy';
-import { Review } from 'src/app/features/interfaces/Reviews/review.interface';
 import { ReviewService } from 'src/app/features/services/Review/review.service';
-import { InfoComponent } from 'src/app/shared/components/info/info.component';
 
 @Component({
   selector: 'app-add-review',
@@ -18,16 +18,21 @@ export class AddReviewComponent {
   user_name: string | null = localStorage.getItem('USER_NAME');
   user_id: number | null = Number(localStorage.getItem('USER_ID'));
 
-  constructor(private reviewService: ReviewService, private modal: MatDialog) { }
+  constructor(private reviewService: ReviewService, private dialog: MatDialog,private auth:AuthService) { }
 
   submitReview() {
-    let data: PostReviewData = {
-      'content': this.review.value,
-      'garage_id': this.garage_id,
-      'user_id': this.user_id
-    }
-    this.reviewService.postReview(data).subscribe((response: any) => {
-      this.refresh.emit(true);
-    });
+      if(this.auth.isLogged()){
+
+        let data: PostReviewData = {
+          'content': this.review.value,
+          'garage_id': this.garage_id,
+          'user_id': this.user_id
+        }
+        this.reviewService.postReview(data).subscribe((response: any) => {
+          this.refresh.emit(true);
+        });
+      }else{
+        this.dialog.open(LoginComponent);
+      }
   }
 }
