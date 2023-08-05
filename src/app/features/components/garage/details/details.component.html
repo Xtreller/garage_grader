@@ -2,15 +2,13 @@
 <div class="col garage-details">
   <div class="rounded-top text-white d-flex flex-row  garage-cover"
     [ngStyle]="{ 'background-image': 'url(' +  'https://images.unsplash.com/photo-1475738198235-4b30fc20cff4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHBhbm9yYW1hfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60'+ ')'}">
-    <div class="row">
-      <div class="col ">
-        <div id="profile-image">
-          <img
-            src="https://images.unsplash.com/photo-1570071677470-c04398af73ca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Z2FyYWdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
-            alt="Generic placeholder image" class=" rounded-circle img-fluid img-thumbnail mt-4 mb-2"
-            style="width: 100%; height: auto;  z-index: 1">
+    <div >
+      <div id="profile-image"  >
+        <img
+          src="https://images.unsplash.com/photo-1570071677470-c04398af73ca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Z2FyYWdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
+          alt="Generic placeholder image" class=" rounded-circle img-fluid img-thumbnail mt-4 mb-2"
+          style="width: 100%; height: auto;  z-index: 1">
 
-        </div>
 
       </div>
     </div>
@@ -18,14 +16,14 @@
   <div class=" w-75 m-auto mt-4 ">
     <div class="my-4 row text-black card-body " style="background-color: #f8f9fa;">
       <div class="row  py-1">
-        <div class="d-flex justify-content-end col-7">
+        <div class="text-center text-md-start text-lg-end col-12 col-md-7">
           <div class="ms-3 text-black z-3">
             <h2>{{garage.name}}</h2>
             <p>{{garage.town}}</p>
           </div>
         </div>
-        <div class="col-5">
-          <div class="d-flex flex-row justify-content-end">
+        <div class="col-12 col-md-5">
+          <div class="d-flex flex-col flex-md-row justify-content-end">
             <div>
               <p class="mb-1 h5">253</p>
               <p class="small text-muted mb-0">Photos</p>
@@ -45,7 +43,7 @@
       </div>
     </div>
 
-    <div class="card-body text-black">
+    <div class="card-body text-black text-center text-md-start">
       <div class="mb-5">
         <p class="lead fw-normal mb-1">Повече за нас</p>
         <div class="info-card">
