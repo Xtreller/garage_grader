@@ -18,7 +18,7 @@ export class InfoComponent {
     public dialog: MatDialog,
     public router:Router
   ) {
-    this.messages = this.data.messages;
+    this.messages = this.data.messages.errors;
     this.status = this.data.status;
     console.log(this.data);
     if (this.data.link) {

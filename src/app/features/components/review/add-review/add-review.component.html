@@ -21,7 +21,7 @@
             <mat-label>Коментар</mat-label>
             <input matInput placeholder="Тип" [formControl]="review" placeholder="Добави коментар...">
             <mat-error class="mt-1"
-              *ngIf="this.review.hasError('minLength') && (this.review.dirty || this.review.touched) ">
+              *ngIf="showError">
               Коментара трябва да е поне 5 символа!
             </mat-error>
           </mat-form-field>

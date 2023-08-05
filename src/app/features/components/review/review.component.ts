@@ -1,4 +1,4 @@
-import { Component, Input, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 import { ReviewService } from '../../services/Review/review.service';
 import { Review } from '../../interfaces/Reviews/review.interface';
 import { MatDialog } from '@angular/material/dialog';
@@ -12,8 +12,9 @@ import { EditReviewComponent } from './edit-review/edit-review.component';
   styleUrls: ['./review.component.scss']
 })
 export class ReviewComponent {
-  @Input() id: number;
+  @Input('garage_id') id: number;
   // @Input() sub_reviews?: Review[] = [];
+  @Output() reviewsCount =  new EventEmitter<number>();
   reviews: Review[] = [];
   user_id: number | null = Number(localStorage.getItem('USER_ID'));
   constructor(private reviewService: ReviewService, private dialog: MatDialog,private snacbar:MatSnackBar) {
@@ -28,6 +29,7 @@ export class ReviewComponent {
   getData() {
     this.reviewService.getReviews(this.id).subscribe((response: any) => {
       this.reviews = response.data;
+      this.reviewsCount.emit(this.reviews.length);
     })
   }
   editReview(id:number,content:string){

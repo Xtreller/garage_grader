@@ -17,11 +17,12 @@ export class AddReviewComponent {
   review: FormControl = new FormControl('', [Validators.required, Validators.minLength(5)]);
   user_name: string | null = localStorage.getItem('USER_NAME');
   user_id: number | null = Number(localStorage.getItem('USER_ID'));
-
-  constructor(private reviewService: ReviewService, private dialog: MatDialog,private auth:AuthService) { }
+  showError:boolean = false;
+  constructor(private reviewService: ReviewService, private dialog: MatDialog, private auth: AuthService) { }
 
   submitReview() {
-      if(this.auth.isLogged()){
+    if (this.auth.isLogged()) {
+      if (this.review.valid) {
 
         let data: PostReviewData = {
           'content': this.review.value,
@@ -29,10 +30,17 @@ export class AddReviewComponent {
           'user_id': this.user_id
         }
         this.reviewService.postReview(data).subscribe((response: any) => {
+          this.review.reset();
+          this.showError = false;
           this.refresh.emit(true);
         });
       }else{
-        this.dialog.open(LoginComponent);
+        console.log(this.showError)
+        this.showError = true;
+        console.log(this.showError)
       }
+    } else {
+      this.dialog.open(LoginComponent);
+    }
   }
 }

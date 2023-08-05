@@ -1,6 +1,7 @@
 import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import Garage from 'src/app/features/interfaces/Garage/garage.interface';
+import { Review } from 'src/app/features/interfaces/Reviews/review.interface';
 import { GarageService } from 'src/app/features/services/Garage/garage.service';
 
 @Component({
@@ -8,12 +9,12 @@ import { GarageService } from 'src/app/features/services/Garage/garage.service';
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.scss']
 })
-export class DetailsComponent {
+export class DetailsComponent implements OnInit {
   garage: Garage;
   owner: boolean = false;
+  reviews: number = 0;
 
   constructor(private garageService: GarageService, private route: ActivatedRoute) {
-    this.getData();
   }
   getData() {
     const id = Number(this.route.snapshot.paramMap.get('id'));
@@ -25,10 +26,14 @@ export class DetailsComponent {
       }
     })
   }
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnInit(){
     this.getData()
   }
-  ratingChanged($event:any){
+  setReviewCount(e:number){
+    this.reviews = e;
+  }
+
+  ratingChanged($event: any) {
     console.log($event);
   }
 

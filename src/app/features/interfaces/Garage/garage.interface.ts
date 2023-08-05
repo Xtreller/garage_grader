@@ -10,6 +10,8 @@ export default interface Garage {
   town: string,
   phone: string,
   always_open: number,
+  view_count: number,
+  rate?: number,
   are_mobile_service: number,
   favorites: [],
   reviews: [],

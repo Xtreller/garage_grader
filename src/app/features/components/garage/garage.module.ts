@@ -29,6 +29,6 @@ import { RatingsComponent } from './ratings/ratings.component';
     ReviewModule
   ],
   // schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  exports:[GarageListComponent]
+  exports:[GarageListComponent],
 })
 export class GarageModule { }
