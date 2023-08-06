@@ -23,10 +23,10 @@
         <mat-icon>person_outline</mat-icon>
         <span>Профил</span>
       </button>
-      <button mat-menu-item *ngIf="role == 'admin'">
+      <a mat-menu-item *ngIf="role == 'admin'" routerLink="/admin">
         <mat-icon>person_outline</mat-icon>
         <span>Админски панел</span>
-      </button>
+      </a>
       <button mat-menu-item>
         <mat-icon>bookmark</mat-icon>
         <span>Запазени</span>

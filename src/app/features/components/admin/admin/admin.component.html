@@ -1,0 +1,25 @@
+<div class="tabs-container ">
+
+  <mat-tab-group (selectedIndexChange)="selected.setValue($event)" class="nav nav-pills ">
+    <mat-tab label="Потребители"  class="flex-sm-fill text-sm-center nav-link " >
+      <ng-template matTabContent>
+        <app-users></app-users>
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="Гаражи"  class="flex-sm-fill text-sm-center nav-link active" >
+      <ng-template matTabContent>
+        <app-garages></app-garages>
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="Типове сервизи"  class="flex-sm-fill text-sm-center nav-link " >
+      <ng-template matTabContent>
+        <app-services></app-services>
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="Достъп"  class="flex-sm-fill text-sm-center nav-link " >
+      <ng-template matTabContent>
+        <app-roles></app-roles>
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>
+</div>

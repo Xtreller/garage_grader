@@ -20,6 +20,8 @@
     "@angular/platform-browser": "^16.1.0",
     "@angular/platform-browser-dynamic": "^16.1.0",
     "@angular/router": "^16.1.0",
+    "ag-grid-angular": "^30.0.6",
+    "ag-grid-community": "^30.0.6",
     "bootstrap": "^5.3.0",
     "mat-timepicker": "^5.1.8",
     "rxjs": "~7.8.0",
