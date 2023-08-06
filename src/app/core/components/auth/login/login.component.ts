@@ -13,11 +13,11 @@ import { RegisterComponent } from '../register/register.component';
 })
 export class LoginComponent {
 
-  form:FormGroup;
-  constructor(public dialog: MatDialog,public dialogRef:MatDialogRef<LoginComponent>,private fb:FormBuilder,private auth:AuthService,private snackbar:MatSnackBar) {
+  form: FormGroup;
+  constructor(public dialog: MatDialog, public dialogRef: MatDialogRef<LoginComponent>, private fb: FormBuilder, private auth: AuthService, private snackbar: MatSnackBar) {
     this.form = this.fb.group({
-      email:new FormControl("",[Validators.required,Validators.email]),
-      password:new FormControl("",[Validators.required,Validators.minLength(5)]),
+      email: new FormControl("", [Validators.required, Validators.email]),
+      password: new FormControl("", [Validators.required, Validators.minLength(5)]),
     })
   }
   get f() { return this.form.controls; }
@@ -31,30 +31,31 @@ export class LoginComponent {
       panelClass: 'mat-dialog-round'
     });
   }
-  login(){
-    if(this.form.valid){
-        this.auth.login(this.form.value).subscribe((response:any)=>{
-          if(response.status ==='ok'){
-            this.snackbar.open('Добре дошли ' + response.user.name + '!','',{duration:2500});
-            localStorage.setItem('TOKEN',response.token);
-            localStorage.setItem('USER_ID',response.user.id);
-            localStorage.setItem('USER_EMAIL',response.user.email);
-            localStorage.setItem('USER_NAME',response.user.name);
-            if(response.user.role.name){
-              localStorage.setItem('USER_ROLE',response.user.role.name);
-            }
-            localStorage.setItem('USER',JSON.stringify(response.user));
-            LoginEmitter.login.emit(true);
+  login() {
+    if (this.form.valid) {
+      this.auth.login(this.form.value).subscribe((response: any) => {
+        if (response.status === 'ok') {
+          this.snackbar.open('Добре дошли ' + response.user.name + '!', '', { duration: 2500 });
+          localStorage.setItem('TOKEN', response.token);
+          localStorage.setItem('USER_ID', response.user.id);
+          localStorage.setItem('USER_EMAIL', response.user.email);
+          localStorage.setItem('USER_NAME', response.user.name);
+          localStorage.setItem('favorites', JSON.stringify(response.user.favorites.map((f: any) => f.garage_id)));
+          if (response.user.role.name) {
+            localStorage.setItem('USER_ROLE', response.user.role.name);
+          }
+          localStorage.setItem('USER', JSON.stringify(response.user));
+          LoginEmitter.login.emit(true);
 
-            this.dialogRef.close();
-          }
-          else{
-            this.snackbar.open(response.message,'',{duration:2500});
-          }
-        })
+          this.dialogRef.close();
+        }
+        else {
+          this.snackbar.open(response.message, '', { duration: 2500 });
+        }
+      })
     }
-    else{
-      this.snackbar.open("Моля попълнете задължителните полета!","",{duration:2000});
+    else {
+      this.snackbar.open("Моля попълнете задължителните полета!", "", { duration: 2000 });
     }
 
   }

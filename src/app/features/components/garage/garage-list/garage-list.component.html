@@ -7,8 +7,15 @@
       class="card-img-left col-5" alt="...">
     <div class="col">
       <div class="card-content ">
-        <h5 class="h2 font-weight-italic font-italic bold">{{garage.name}}</h5>
-        <p class="card-text align-self-middle">{{garage.description | truncate:80}}</p>
+        <h2 class=" bold mb-2">{{garage.name}}
+          <button class="btn mt-0 pt-1  me-2 float-end" (click)="favorite(garage.id)">
+            <mat-icon >
+              <span *ngIf="favorites && favorites.includes(garage.id);else notFav">bookmark</span>
+              <ng-template #notFav><span >bookmark_border</span></ng-template>
+            </mat-icon>
+          </button>
+        </h2>
+        <p class="card-text align-self-middle ">{{garage.description | truncate:80}}</p>
         <p class="card-text align-self-middle ">{{garage.type}}</p>
         <p class="card-text align-self-middle">{{garage.services}}</p>
         <p class="card-text align-self-middle">{{garage.description | truncate:80}}</p>

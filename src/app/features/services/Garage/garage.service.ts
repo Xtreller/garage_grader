@@ -11,7 +11,6 @@ import { map } from 'rxjs';
 })
 export class GarageService {
 
-
   private apiUrl: string = environment.apiUrl;
   constructor(public http: HttpClient, private auth: AuthService) { }
   //ToDo: add data interface
@@ -26,11 +25,11 @@ export class GarageService {
       return this.http.get(this.apiUrl + '/garage');
     }
   }
-  filterGarages(filter:GarageFilter){
-    return this.http.post(this.apiUrl + '/garages/filter',filter).pipe(map((response:any)=>response.data));
+  filterGarages(filter: GarageFilter) {
+    return this.http.post(this.apiUrl + '/garages/filter', filter).pipe(map((response: any) => response.data));
   }
   getGaragesNames() {
-      return this.http.get(this.apiUrl + '/garage/names').pipe(map((response:any)=>response.data));
+    return this.http.get(this.apiUrl + '/garage/names').pipe(map((response: any) => response.data));
   }
 
   addGarage(data: any) {
@@ -39,7 +38,15 @@ export class GarageService {
   deleteGarage(id: number) {
     return this.http.delete(this.apiUrl + '/garage/' + id);
   }
-  updateGarage(id:number,data: any) {
-   return this.http.put(this.apiUrl + '/garage/'+id,data);
+  updateGarage(id: number, data: any) {
+    return this.http.put(this.apiUrl + '/garage/' + id, data);
   }
+  getFavorites() {
+    return this.http.get(this.apiUrl + '/favorites');
+  }
+  favorite(id: number) {
+    return this.http.post(this.apiUrl + '/favorite', { 'garage_id': id });
+  }
+
+
 }

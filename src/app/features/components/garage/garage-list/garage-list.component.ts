@@ -7,6 +7,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { EditReviewComponent } from '../../review/edit-review/edit-review.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationComponent } from 'src/app/shared/components/confirmation/confirmation.component';
+import { AuthService } from 'src/app/core/services/Auth/auth.service';
 
 @Component({
   selector: 'app-garage-list',
@@ -19,7 +20,8 @@ export class GarageListComponent {
 
   user: string | null = localStorage.getItem('USER');
   rights: Rights;
-  constructor(private garageService: GarageService, private router: Router, private snackbar: MatSnackBar, private dialog: MatDialog) {
+  favorites: number[] = [];
+  constructor(private garageService: GarageService, private router: Router, private snackbar: MatSnackBar, private dialog: MatDialog, private auth: AuthService) {
     this.getData();
   }
   getData() {
@@ -37,10 +39,25 @@ export class GarageListComponent {
         this.garageList = response.data;
       })
     }
+    if (this.auth.isLogged()) {
+      this.favorites = JSON.parse(localStorage.getItem('favorites') || "[]");
+      // console.log(this.favorites);
+    }
   }
   setGarages(data: Garage[]) {
     this.garageList = data;
 
+  }
+  favorite(id: number) {
+    this.garageService.favorite(id).subscribe((resp: any) => {
+      if (resp.data || resp.status) {
+        this.garageService.getFavorites().subscribe((response:any)=>{
+          if(response.data){
+            this.favorites = response.data.map((f:any)=>f.garage_id);
+          }
+        });
+      }
+    });
   }
   deleteGarage(id: number) {
     if (this.rights.delete) {
