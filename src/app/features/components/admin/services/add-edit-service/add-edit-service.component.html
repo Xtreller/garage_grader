@@ -1,1 +1,19 @@
-<p>add-edit-service works!</p>
+<h2 class="p-3 pb-0 pe-0 text-start">Добавяне на тип сервиз</h2>
+<div class="container">
+    <div class="row">
+      <mat-form-field class="form-outline form-white" appearance="outline">
+        <mat-label>Tип сервиз</mat-label>
+        <input matInput placeholder="Тип" [formControl]="serviceControl">
+      </mat-form-field>
+    </div>
+    <div class="w-100 w-100 d-flex justify-content-center mt-3">
+      <div class="w-50 ">
+        <button mat-raised-button color="primary" class="btn px-5 py-2 col-5 me-2 btn-rad-20" type="submit"  *ngIf="data?.id"
+          (click)="onSubmit()">Редактирай</button>
+        <button mat-raised-button color="primary" class="btn px-5 py-2 col-5 me-2 btn-rad-20" type="submit" *ngIf="!data?.id"
+          (click)="onSubmit()">Запази</button>
+        <button mat-raised-button color="default" class="btn px-5 py-2 col-5 bg-dark text-white btn-rad-20"
+          type="button" (click)="this.dialogRef.close()">Отказ</button>
+      </div>
+    </div>
+</div>

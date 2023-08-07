@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { GridApi, ColDef, GridReadyEvent, GridOptions } from 'ag-grid-community';
 import { AdminService } from 'src/app/features/services/Admin/admin.service';
 import { TableActionsComponent } from '../table-actions/table-actions.component';
+import { AddEditServiceComponent } from './add-edit-service/add-edit-service.component';
+import { MatDialog } from '@angular/material/dialog';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-services',
@@ -32,7 +35,8 @@ export class ServicesComponent {
     rowData: [],
     onGridReady: (e) => this.onGridReady(e)
   }
-  constructor(private adminService: AdminService) { }
+  constructor(private adminService: AdminService, private dialog: MatDialog) { }
+
 
   ngOnInit(): void { }
 
@@ -44,6 +48,13 @@ export class ServicesComponent {
     })
   }
 
+  openDialog() {
+    let dialog = this.dialog.open(AddEditServiceComponent);
+    dialog.afterClosed().subscribe(() => {
+      console.log('test');
+      this.getData()
+    });
+  }
   onGridReady(params: GridReadyEvent) {
     this.gridApi = params.api;
     this.getData()

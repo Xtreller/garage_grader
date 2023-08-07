@@ -31,12 +31,10 @@ export class TableActionsComponent implements ICellRendererAngularComp {
   agInit(params: any): void {
     this.type = params.data;
     this.rowData = params.node.data;
-    this.parent = params.data.parent;
-    console.log(params.node.data);
+    this.parent = params.parent;
   }
   openHistory() {
-    // this.dialog.open(UserLogComponent);
-    // this.adminService.getUserHistory(this.rowData.id).subscribe()
+
     this.dialog.open(UserLogComponent,
       {
         maxWidth: '600px',
@@ -69,14 +67,16 @@ export class TableActionsComponent implements ICellRendererAngularComp {
         });
         break;
     }
-    dialog.afterClosed().subscribe((result: boolean) => this.parent.getData());
-    console.log(this.type);
+    dialog.afterClosed().subscribe((result: boolean) =>{
+      dialog.close();
+      this.parent.getData()});
   }
   delete() {
     let dialog = this.dialog.open(ConfirmationComponent);
     dialog.afterClosed().subscribe((result: boolean) => {
       if (result) {
         this.adminService.delete(this.type, this.rowData.id)?.subscribe((response: any) => {
+          this.parent.getData()
           this.snackbar.open('Успешно изтрит запис', '', { duration: 2500 });
         })
       }

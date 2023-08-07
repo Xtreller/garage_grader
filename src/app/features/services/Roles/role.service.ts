@@ -9,6 +9,9 @@ import { environment } from 'src/environment/environment';
 export class RoleService {
   apiUrl = environment.apiUrl;
   constructor(private http: HttpClient) { }
+  getRole(id: any) {
+    return this.http.get(this.apiUrl + '/role/' + id);
+  }
   addRole(data: Role) {
     return this.http.post(this.apiUrl + '/role', data);
   }

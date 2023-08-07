@@ -6,13 +6,14 @@ import { UsersService } from '../Users/users.service';
 import { RoleService } from '../Roles/role.service';
 import { GarageService } from '../Garage/garage.service';
 import { Observable } from 'rxjs';
+import { ServiceService } from '../Services/service.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminService {
   apiUrl = environment.apiUrl + '/admin';
-  constructor(private http: HttpClient, private userService: UsersService, private roleService: RoleService, private garageService: GarageService) { }
+  constructor(private http: HttpClient, private userService: UsersService, private roleService: RoleService, private garageService: GarageService, private servicesService: ServiceService) { }
   getData(table: string) {
     return this.http.get(this.apiUrl + '/' + table);
   }
@@ -29,7 +30,7 @@ export class AdminService {
         request = this.garageService.deleteGarage(id)
         break;
       case 'services':
-        // request = this.servicesService.delete(id)
+        request = this.servicesService.deleteService(id)
         break;
       case 'roles':
         request = this.roleService.deleteRole(id)
