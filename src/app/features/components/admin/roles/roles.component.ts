@@ -13,20 +13,22 @@ export class RolesComponent {
 
   public defaultColDef: ColDef = {
     resizable: true,
-    cellClass:'d-flex flex-row align-items-center'
+    cellClass: 'd-flex flex-row align-items-center'
   };
   users: any;
 
   constructor(private adminService: AdminService) { }
 
   ngOnInit(): void {
+
+  }
+  getData(){
     this.adminService.getData('roles').subscribe((response: any) => {
       if (response.data) {
-        this.rowData = response.data;
+        this.gridApi.setRowData(response.data);
       }
     })
   }
-
   sizeToFit() {
     this.gridApi.sizeColumnsToFit({
       defaultMinWidth: 100,
@@ -35,16 +37,33 @@ export class RolesComponent {
 
   onGridReady(params: GridReadyEvent) {
     this.gridApi = params.api;
+    this.getData()
     this.sizeToFit()
   }
   columnDefs: ColDef[] = [
     { headerName: 'Id', field: 'id', maxWidth: 100, },
     { headerName: 'Роля', field: 'name' },
-    { headerName: 'Преглед', field: 'see' },
-    { headerName: 'Създаване', field: 'add' },
-    { headerName: 'Редакция', field: 'edit' },
-    { headerName: 'Изтриване', field: 'delete' },
-    { headerName: 'Действия', field: 'actions', type: 'rightAligned', cellRenderer: TableActionsComponent },
+    {
+      headerName: 'Преглед', field: 'see', valueFormatter: (value: any) => {
+        return value ? 'Да' : "Не";
+      }
+    },
+    {
+      headerName: 'Създаване', field: 'add', valueFormatter: (value: any) => {
+        return value ? 'Да' : "Не";
+      }
+    },
+    {
+      headerName: 'Редакция', field: 'edit', valueFormatter: (value: any) => {
+        return value ? 'Да' : "Не";
+      }
+    },
+    {
+      headerName: 'Изтриване', field: 'delete', valueFormatter: (value: any) => {
+        return value ? 'Да' : "Не";
+      }
+    },
+    { headerName: 'Действия', field: 'actions', type: 'rightAligned', cellRenderer: TableActionsComponent, cellRendererParams: { data: "roles", parent: this } },
   ];
 
   rowData = [];

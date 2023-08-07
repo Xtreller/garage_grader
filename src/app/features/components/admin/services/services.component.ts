@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { GridApi, ColDef, GridReadyEvent } from 'ag-grid-community';
+import { GridApi, ColDef, GridReadyEvent, GridOptions } from 'ag-grid-community';
 import { AdminService } from 'src/app/features/services/Admin/admin.service';
 import { TableActionsComponent } from '../table-actions/table-actions.component';
 
@@ -13,18 +13,41 @@ export class ServicesComponent {
 
   public defaultColDef: ColDef = {
     resizable: true,
-    cellClass:'d-flex flex-row align-items-center'
+    cellClass: 'd-flex flex-row align-items-center'
   };
-  users: any;
+  columnDefs: ColDef[] = [
+    { headerName: 'Id', field: 'id', maxWidth: 100, },
+    { headerName: 'Име', field: 'name' },
+    { headerName: 'Еmail', field: 'email' },
+    { headerName: 'Роля', field: 'role.name' },
+    { headerName: 'Действия', field: 'actions', type: 'rightAligned', cellRenderer: TableActionsComponent, cellRendererParams: { data: "services", parent: this } },
+  ];
 
+  rowData = [];
+  users: any;
+  gridOptions: GridOptions = {
+    rowHeight: 45,
+    columnDefs: this.columnDefs,
+    defaultColDef: this.defaultColDef,
+    rowData: [],
+    onGridReady: (e) => this.onGridReady(e)
+  }
   constructor(private adminService: AdminService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { }
+
+  getData() {
     this.adminService.getData('services').subscribe((response: any) => {
       if (response.data) {
-        this.rowData = response.data;
+        this.gridApi.setRowData(response.data);
       }
     })
+  }
+
+  onGridReady(params: GridReadyEvent) {
+    this.gridApi = params.api;
+    this.getData()
+    this.sizeToFit()
   }
 
   sizeToFit() {
@@ -33,17 +56,4 @@ export class ServicesComponent {
     });
   }
 
-  onGridReady(params: GridReadyEvent) {
-    this.gridApi = params.api;
-    this.sizeToFit()
-  }
-  columnDefs: ColDef[] = [
-    { headerName: 'Id', field: 'id', maxWidth: 100, },
-    { headerName: 'Име', field: 'name' },
-    { headerName: 'Еmail', field: 'email' },
-    { headerName: 'Роля', field: 'role.name' },
-    { headerName: 'Действия', field: 'actions', type: 'rightAligned', cellRenderer: TableActionsComponent },
-  ];
-
-  rowData = [];
 }

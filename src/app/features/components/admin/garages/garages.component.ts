@@ -13,20 +13,22 @@ export class GaragesComponent {
 
   public defaultColDef: ColDef = {
     resizable: true,
-    cellClass:'d-flex flex-row align-items-center'
+    cellClass: 'd-flex flex-row align-items-center'
   };
   users: any;
 
   constructor(private adminService: AdminService) { }
 
   ngOnInit(): void {
+
+  }
+  getData() {
     this.adminService.getData('garages').subscribe((response: any) => {
       if (response.data) {
         this.rowData = response.data;
       }
     })
   }
-
   sizeToFit() {
     this.gridApi.sizeColumnsToFit({
       defaultMinWidth: 100,
@@ -35,7 +37,9 @@ export class GaragesComponent {
 
   onGridReady(params: GridReadyEvent) {
     this.gridApi = params.api;
+    this.getData()
     this.sizeToFit()
+
   }
   columnDefs: ColDef[] = [
     { headerName: 'Id', field: 'id', maxWidth: 100, },
@@ -45,7 +49,7 @@ export class GaragesComponent {
     { headerName: 'Телефон', field: 'phone' },
     { headerName: 'Email', field: 'email' },
     { headerName: 'Създаден на', field: 'created_at' },
-    { headerName: 'Действия', field: 'actions', type: 'rightAligned', cellRenderer: TableActionsComponent },
+    { headerName: 'Действия', field: 'actions', type: 'rightAligned', cellRenderer: TableActionsComponent, cellRendererParams: { data: "garages", parent: this } },
   ];
 
   rowData = [];

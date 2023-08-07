@@ -17,6 +17,7 @@ import { ConfirmationComponent } from './shared/components/confirmation/confirma
 import { MAT_RADIO_DEFAULT_OPTIONS } from '@angular/material/radio';
 import { TokenInterceptor } from './core/interceptors/token.interceptor';
 import { AgGridModule } from 'ag-grid-angular';
+import { UsersModule } from './features/components/users/users.module';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { AgGridModule } from 'ag-grid-angular';
     AuthModule,
     MaterialModule,
     GarageModule,
-    AgGridModule
+    AgGridModule,
+    UsersModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [

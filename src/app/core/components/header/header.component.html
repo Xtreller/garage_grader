@@ -19,12 +19,12 @@
     </button>
 
     <mat-menu #profile="matMenu" class="rounded">
-      <button mat-menu-item>
+      <button mat-menu-item (click)="openProfile()">
         <mat-icon>person_outline</mat-icon>
         <span>Профил</span>
       </button>
       <a mat-menu-item *ngIf="role == 'admin'" routerLink="/admin">
-        <mat-icon>person_outline</mat-icon>
+        <mat-icon>library_books</mat-icon>
         <span>Админски панел</span>
       </a>
       <button mat-menu-item>

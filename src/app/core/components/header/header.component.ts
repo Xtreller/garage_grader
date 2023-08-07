@@ -4,6 +4,7 @@ import { LoginEmitter } from '../../emitters/login_emitter';
 import { AuthService } from '../../services/Auth/auth.service';
 import { LoginComponent } from '../auth/login/login.component';
 import { Role } from '../../interfaces/Auth/role.interface';
+import { UserProfileComponent } from 'src/app/features/components/users/user-profile/user-profile.component';
 
 @Component({
   selector: 'app-header',
@@ -29,6 +30,16 @@ export class HeaderComponent {
       console.warn('Production!');
     }
 
+  }
+  openProfile(): void {
+    const dialogRef = this.dialog.open(UserProfileComponent, {
+      data: {id:localStorage.getItem("USER_ID")},
+      panelClass: 'mat-dialog-round'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+
+    });
   }
   openDialog(): void {
     const dialogRef = this.dialog.open(LoginComponent, {

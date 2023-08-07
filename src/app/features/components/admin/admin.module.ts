@@ -11,17 +11,19 @@ import { ServicesComponent } from './services/services.component';
 import { RolesComponent } from './roles/roles.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { TableActionsComponent } from './table-actions/table-actions.component';
+import { AddEditServiceComponent } from './services/add-edit-service/add-edit-service.component';
+import { AddEditRoleComponent } from './roles/add-edit-role/add-edit-role.component';
 
 
 @NgModule({
-  declarations: [AdminComponent, UsersComponent, GaragesComponent, ServicesComponent, RolesComponent, TableActionsComponent],
+  declarations: [AdminComponent, UsersComponent, GaragesComponent, ServicesComponent, RolesComponent, TableActionsComponent, AddEditServiceComponent, AddEditRoleComponent],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
     AdminRoutingModule,
-    AgGridModule
+    AgGridModule,
   ]
 })
 export class AdminModule { }

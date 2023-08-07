@@ -1,0 +1,11 @@
+<div class="container p-5" >
+  <h4 style="margin-left: 1.2rem;">Latest News</h4>
+  <ul class="timeline-3 maxh-75">
+    <li *ngFor="let log of logs">
+      <!-- <a href="#!">New Web Design</a> -->
+      <a href="javascript:void(0)" class="float-end">{{log.created_at | date}}</a>
+      <p class="mt-2">{{log.action}}</p>
+    </li>
+
+  </ul>
+</div>

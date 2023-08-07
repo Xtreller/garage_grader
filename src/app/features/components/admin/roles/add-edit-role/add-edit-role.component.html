@@ -1,0 +1,25 @@
+<h2 class="p-3 pb-0 pe-0 text-start">Добавяне на роля</h2>
+<div class="container">
+  <form [formGroup]="form">
+    <div class="row">
+      <mat-form-field class="form-outline form-white" appearance="outline">
+        <mat-label>Tип гараж</mat-label>
+        <input matInput placeholder="Тип" formControlName="name">
+      </mat-form-field>
+    </div>
+    <div class="p-3">
+      <mat-checkbox class="form-control form-checkbox" formControlName="see" color="primary">Преглед</mat-checkbox>
+      <mat-checkbox class="form-control form-checkbox" formControlName="add" color="primary">Добавяне</mat-checkbox>
+      <mat-checkbox class="form-control form-checkbox" formControlName="edit" color="primary">Редакция</mat-checkbox>
+      <mat-checkbox class="form-control form-checkbox" formControlName="delete" color="primary">Изтриване</mat-checkbox>
+    </div>
+    <div class="w-100 w-100 d-flex justify-content-center mt-3">
+      <div class="w-50 ">
+        <button mat-raised-button color="primary" class="btn px-5 py-2 col-5 me-2 btn-rad-20" type="submit"
+          (click)="onSubmit()">Редактирай</button>
+        <button mat-raised-button color="default" class="btn px-5 py-2 col-5 bg-dark text-white btn-rad-20"
+          type="button" routerLink="/">Отказ</button>
+      </div>
+    </div>
+  </form>
+</div>

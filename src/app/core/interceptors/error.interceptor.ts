@@ -11,16 +11,18 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { InfoComponent } from 'src/app/shared/components/info/info.component';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/Auth/auth.service';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
 
-  constructor(private snackbar:MatSnackBar,private dialog:MatDialog,private router:Router) { }
+  constructor(private snackbar:MatSnackBar,private dialog:MatDialog,private router:Router,private auth:AuthService) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
         if (error.status === 401) {
+          this.auth.logout();
           this.snackbar.open('Нямате достъп до този ресурс', '', {
             duration: 3000
           });

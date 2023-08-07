@@ -1,6 +1,6 @@
 <div class="d-flex flex-row justify-content-end text-end align-items-center">
 
-  <button mat-icon-button matTooltip="Активност на потребителя"> <mat-icon>timeline</mat-icon> </button>
-  <button mat-icon-button matTooltip="Редактирай"> <mat-icon>edit</mat-icon> </button>
-  <button mat-icon-button matTooltip="Изтрий"> <mat-icon>close</mat-icon> </button>
+  <button mat-icon-button matTooltip="Активност на потребителя" *ngIf="type=='users'" (click)="openHistory()"> <mat-icon>timeline</mat-icon> </button>
+  <button mat-icon-button matTooltip="Редактирай" (click)="edit()"> <mat-icon>edit</mat-icon> </button>
+  <button mat-icon-button matTooltip="Изтрий" (click)="this.delete()"> <mat-icon>close</mat-icon> </button>
 </div>

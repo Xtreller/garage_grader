@@ -16,44 +16,50 @@ export interface PeriodicElement {
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss']
 })
-export class UsersComponent implements OnInit {
+export class UsersComponent  {
   private gridApi!: GridApi;
 
   public defaultColDef: ColDef = {
     resizable: true,
-    cellClass:'d-flex flex-row align-items-center'
+    cellClass: 'd-flex flex-row align-items-center'
   };
   users: any;
-
-  constructor(private adminService: AdminService) { }
-
-  ngOnInit(): void {
-    this.adminService.getData('users').subscribe((response: any) => {
-      if (response.data) {
-        this.rowData = response.data;
-      }
-    })
-  }
-
-  sizeToFit() {
-    this.gridApi.sizeColumnsToFit({
-      defaultMinWidth: 100,
-    });
-  }
-
-  onGridReady(params: GridReadyEvent) {
-    this.gridApi = params.api;
-    this.sizeToFit()
-  }
   columnDefs: ColDef[] = [
     { headerName: 'Id', field: 'id', maxWidth: 100, },
     { headerName: 'Име', field: 'name' },
     { headerName: 'Еmail', field: 'email' },
     { headerName: 'Роля', field: 'role.name' },
     { headerName: 'Регисриран', field: 'created_at' },
-    { headerName: 'Действия', field: 'actions', type: 'rightAligned', cellRenderer: TableActionsComponent },
+    { headerName: 'Действия', field: 'actions', type: 'rightAligned', cellRenderer: TableActionsComponent, cellRendererParams: { data: "users", parent: this } },
   ];
-
   rowData = [];
+  gridOptions: GridOptions = {
+    rowHeight: 45,
+    columnDefs: this.columnDefs,
+    defaultColDef: this.defaultColDef,
+    rowData: this.rowData,
+    onGridReady: (e) => this.onGridReady(e)
+  }
+
+  constructor(private adminService: AdminService) { }
+
+  onGridReady(params: GridReadyEvent) {
+    this.gridApi = params.api;
+    this.sizeToFit()
+    this.getData();
+  }
+  getData() {
+    this.adminService.getData('users').subscribe((response: any) => {
+      if (response.data) {
+        this.gridApi.setRowData(response.data);
+      }
+    })
+  }
+  sizeToFit() {
+    this.gridApi.sizeColumnsToFit({
+      defaultMinWidth: 100,
+    });
+  }
+
 
 }

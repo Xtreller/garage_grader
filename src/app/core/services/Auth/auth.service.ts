@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environment/environment';
 import { LoginEmitter } from '../../emitters/login_emitter';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import { LoginEmitter } from '../../emitters/login_emitter';
 export class AuthService {
 
   private apiUrl:string = environment.apiUrl ;
-  constructor(public http:HttpClient) { }
+  constructor(public http:HttpClient,private router:Router) { }
   isLogged(){
     return !!localStorage.getItem('TOKEN');
   }
@@ -35,6 +36,7 @@ export class AuthService {
     localStorage.removeItem('USER_EMAIL')
     localStorage.removeItem('user_name')
     LoginEmitter.login.emit(false);
+    this.router.navigate(['/']);
 
   }
 
