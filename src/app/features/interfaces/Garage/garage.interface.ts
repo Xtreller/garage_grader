@@ -16,6 +16,9 @@ export default interface Garage {
   favorites: [],
   reviews: [],
   ratings: [];
+  profile?: any;
+  cover?: any;
+  content?: [];
   fri_end: string,
   fri_start: string,
   mon_end: string,

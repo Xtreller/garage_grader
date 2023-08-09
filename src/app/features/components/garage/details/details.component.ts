@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import Garage from 'src/app/features/interfaces/Garage/garage.interface';
 import { Review } from 'src/app/features/interfaces/Reviews/review.interface';
 import { GarageService } from 'src/app/features/services/Garage/garage.service';
+import { environment } from 'src/environment/environment';
 
 @Component({
   selector: 'app-details',
@@ -13,7 +14,7 @@ export class DetailsComponent implements OnInit {
   garage: Garage;
   owner: boolean = false;
   reviews: number = 0;
-
+  storageUrl = environment.storageUrl;
   constructor(private garageService: GarageService, private route: ActivatedRoute) {
   }
   getData() {

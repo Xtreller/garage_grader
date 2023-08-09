@@ -1,28 +1,54 @@
-<mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="mt-3">
+<mat-expansion-panel [expanded]="true" (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="mt-3">
   <mat-expansion-panel-header>
     <mat-panel-title>
       <h2 class="ps-2 pt-2 fw-bold mb-2 text-uppercase text-muted w-100">Снимки</h2>
     </mat-panel-title>
   </mat-expansion-panel-header>
-  <div class="col-4 ">
-    <div class="mb-md-2 mt-md-4 pb-2 d-flex justify-content-between " formGroupName="profile_picture">
-      <label for="profile_picture">Профилна снимка</label>
-      <input hidden (change)="onFileSelected()" #fileInput type="file" id="profile_picture">
-      <button type="button" class="bg-dark text-white btn-rad-20" mat-raised-button (click)="fileInput.click()">Изберете
-        файл</button>
+  <mat-progress-bar class="example-margin" mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+  <div class="col-12" formGroupName="pictures">
+
+    <div class="row">
+
+      <div class="col-12 col-md-5 mb-md-2 mt-md-4 pb-2 d-flex align-items-center justify-content-between">
+        <label for="profile_picture">Профилна снимка</label>
+        <input hidden (change)="onFileSelected($event,'profile')" formControlName="profile_picture" #profileInput
+          type="file" id="profile_picture">
+        <button type="button" class="bg-dark text-white btn-rad-20" mat-raised-button
+          (click)="profileInput.click()">Изберете
+          файл</button>
+      </div>
+      <div class=" col-12 col-md-7 d-flex align-items-center justify-content-end" *ngIf="profilePicture">
+        {{profilePicture}}
+      </div>
     </div>
-    <div class="mb-md-2 mt-md-4 pb-2  d-flex justify-content-between" formGroupName="cover_picture">
-      <label for="cover_picture">Корица</label>
-      <input hidden (change)="onFileSelected()" #fileInput type="file" id="cover_picture">
-      <button type="button" class="bg-dark text-white btn-rad-20" mat-raised-button (click)="fileInput.click()">Изберете
-        файл</button>
+    <div class="row">
+      <div class="col-12 col-md-5 mb-md-2 mt-md-4 pb-2 d-flex align-items-center justify-content-between">
+        <label for="cover_picture">Корица</label>
+        <input hidden (change)="onFileSelected($event,'cover')" formControlName="cover_picture" #coverInput type="file"
+          id="cover_picture">
+        <button type="button" class="bg-dark text-white btn-rad-20" mat-raised-button
+          (click)="coverInput.click()">Изберете
+          файл</button>
+      </div>
+      <div class="col-12 col-md-7 d-flex align-items-center justify-content-end" *ngIf="coverPicture">
+        {{coverPicture}}
+      </div>
     </div>
-    <div class="mb-md-2 mt-md-4 pb-2 d-flex justify-content-between" formGroupName="pictures">
-      <label for="cover_picture">Снимки</label>
-      <input hidden (change)="onFileSelected()" #fileInput type="file" id="pictures" multiple>
-      <button type="button" class="bg-dark text-white btn-rad-20" mat-raised-button (click)="fileInput.click()">Изберете
-        файл</button>
+    <div class="row">
+      <div class="col-12 col-md-5 mb-md-2 mt-md-4 pb-2 d-flex align-items-start justify-content-between">
+        <label for="cover_picture">Снимки</label>
+        <input hidden (change)="onFileSelected($event)" formControlName="pictures" #picturesInput type="file"
+          id="pictures" multiple>
+        <button type="button" class="bg-dark text-white btn-rad-20" mat-raised-button
+          (click)="picturesInput.click()">Изберете
+          файл</button>
+      </div>
+      <div class="col-12 col-md-7 d-flex flex-column justify-content-center align-items-end"
+        *ngIf="contentImages.length">
+        <span class="d-block" *ngFor="let img of contentImages">{{img}}</span>
+      </div>
     </div>
+    <img *ngIf="preview" [src]="preview" />
   </div>
 
 </mat-expansion-panel>

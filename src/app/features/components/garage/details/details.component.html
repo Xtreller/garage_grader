@@ -4,10 +4,8 @@
     [ngStyle]="{ 'background-image': 'url(' +  'https://images.unsplash.com/photo-1475738198235-4b30fc20cff4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHBhbm9yYW1hfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60'+ ')'}">
     <div>
       <div id="profile-image">
-        <img
-          src="https://images.unsplash.com/photo-1570071677470-c04398af73ca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Z2FyYWdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
-          alt="Generic placeholder image" class=" rounded-circle img-fluid img-thumbnail mt-4 mb-2"
-          style="width: 100%; height: auto;  z-index: 1">
+        <img src="{{storageUrl+garage.profile.path}}" alt="Generic placeholder image"
+          class=" rounded-circle img-fluid img-thumbnail mt-4 mb-2" style="width: 100%; height: auto;  z-index: 1">
 
 
       </div>
@@ -34,7 +32,7 @@
               <p class="small text-muted mb-0">{{reviews== 1 ? "Ревю":"Ревюта"}}</p>
             </div>
             <div class="text-center">
-              <p class="mb-1 h5">{{garage.rate}}</p>
+              <p class="mb-1 h5">{{garage.rate}}/5</p>
               <p class="small text-muted mb-0">Средна оценка</p>
             </div>
           </div>
@@ -86,5 +84,5 @@
       </div>
     </div>
   </div>
-  <app-review [garage_id]="garage.id"  (reviewsCount)="setReviewCount($event)"></app-review>
+  <app-review [garage_id]="garage.id" (reviewsCount)="setReviewCount($event)"></app-review>
 </div>

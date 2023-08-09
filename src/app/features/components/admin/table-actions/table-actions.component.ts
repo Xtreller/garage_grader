@@ -67,9 +67,10 @@ export class TableActionsComponent implements ICellRendererAngularComp {
         });
         break;
     }
-    dialog.afterClosed().subscribe((result: boolean) =>{
+    dialog.afterClosed().subscribe((result: boolean) => {
       dialog.close();
-      this.parent.getData()});
+      this.parent.getData()
+    });
   }
   delete() {
     let dialog = this.dialog.open(ConfirmationComponent);

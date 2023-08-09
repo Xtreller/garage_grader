@@ -21,6 +21,13 @@ export class ErrorInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
+        if (error.status === 400) {
+          this.auth.logout();
+          this.snackbar.open('Изтекла сесия...', '', {
+            duration: 2500
+          });
+          this.router.navigate(['/']);
+        }
         if (error.status === 401) {
           this.auth.logout();
           this.snackbar.open('Нямате достъп до този ресурс', '', {
