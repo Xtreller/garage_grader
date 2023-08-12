@@ -43,23 +43,29 @@ export class WorktimeComponent {
     );
   }
   get f() {
-    return (this.parentForm.get('worktime') as FormControl);
+    return (this.parentForm.get('worktime') as FormGroup).controls;
   }
   cheboxChecked(checked: boolean, event: any) {
     if (!checked) {
-      Array((this.parentForm.get('worktime') as FormGroup)['controls']).forEach((element) => {
+      Array(this.f).forEach((element) => {
+        console.log(element);
         Object.entries(element).forEach((key) => {
           if (!this.required.includes(key[0])) {
+            key[1].setValue('');
             key[1].addValidators(Validators.required);
+
           }
         })
       })
     }
     else {
-      Array((this.parentForm.get('worktime') as FormGroup)['controls']).forEach((element) => {
+      Array(this.f).forEach((element) => {
+        console.log(element);
         Object.entries(element).forEach((key) => {
           if (!this.required.includes(key[0])) {
-            key[1].setValue('00:00');
+            console.log(key[1]);
+            (this.parentForm.get('worktime') as FormGroup).get('mon_start')?.setValue('00:00');
+            // key[1].setValue('00:00:00');
             key[1].removeValidators(Validators.required);
           }
         })
@@ -69,8 +75,9 @@ export class WorktimeComponent {
   ngOnChanges(changes: SimpleChanges) {
     if (changes['data']) {
       if (this.data) {
-        this.f.patchValue(this.data.always_open);
-        this.f.get('always_open')?.setValue(this.data.always_open == 1 ? true : false);
+        this.parentForm.patchValue(this.data);
+
+        this.f['always_open']?.setValue(this.data.always_open == 1 ? true : false);
       }
     }
   }

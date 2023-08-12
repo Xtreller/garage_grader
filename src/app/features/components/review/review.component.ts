@@ -22,7 +22,7 @@ export class ReviewComponent {
 
   }
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['id']) {
+    if (changes['id'] && this.id) {
       this.getData();
     }
   }

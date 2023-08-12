@@ -30,8 +30,8 @@ export class ErrorInterceptor implements HttpInterceptor {
         }
         if (error.status === 401) {
           this.auth.logout();
-          this.snackbar.open('Нямате достъп до този ресурс', '', {
-            duration: 3000
+          this.snackbar.open('Нямате достъп до този ресурс или сесията ви е изтекла!', '', {
+            duration: 5000
           });
           this.router.navigate(['/']);
         }

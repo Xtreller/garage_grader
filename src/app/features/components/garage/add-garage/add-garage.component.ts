@@ -48,11 +48,14 @@ export class AddGarageComponent {
     if (this.form.valid) {
       Object.keys((this.controls['main_info'] as FormGroup).value).forEach(key => {
         // console.log('mI', key)
-        this.formData.append(key, (this.controls['main_info'] as FormGroup).get(key)?.value)
+        if (!this.formData.has(key)) {
+          this.formData.append(key, (this.controls['main_info'] as FormGroup).get(key)?.value)
+        }
       });
       Object.keys((this.controls['worktime'] as FormGroup).value).forEach(key => {
-        // console.log('wt', key)
-        this.formData.append(key, (this.controls['worktime'] as FormGroup).get(key)?.value)
+        if (!this.formData.has(key)) {
+          this.formData.append(key, (this.controls['worktime'] as FormGroup).get(key)?.value)
+        }
       });
       // Object.keys((this. as FormGroup).value).forEach(key => {
       //   // console.log('pctrs', key)
@@ -80,7 +83,7 @@ export class AddGarageComponent {
     }
   }
   uploadImages(data: PicturesData) {
-    console.log(data);
+
     switch (data.type) {
       case 'profile':
       case 'cover':

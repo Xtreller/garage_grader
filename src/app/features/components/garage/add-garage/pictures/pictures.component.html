@@ -18,7 +18,7 @@
           файл</button>
       </div>
       <div class=" col-12 col-md-7 d-flex align-items-center justify-content-end" *ngIf="profilePicture">
-        {{profilePicture}}
+        {{profilePicture}}<button mat-icon-button type="button" (click)="removeImage('profile')" class="btn btn-outline-danger btn-sm ms-2"><mat-icon>close</mat-icon></button>
       </div>
     </div>
     <div class="row">
@@ -31,7 +31,7 @@
           файл</button>
       </div>
       <div class="col-12 col-md-7 d-flex align-items-center justify-content-end" *ngIf="coverPicture">
-        {{coverPicture}}
+        {{coverPicture}}<button mat-icon-button type="button" (click)="removeImage('cover')" class="btn btn-outline-danger btn-sm ms-2"><mat-icon>close</mat-icon></button>
       </div>
     </div>
     <div class="row">
@@ -45,7 +45,7 @@
       </div>
       <div class="col-12 col-md-7 d-flex flex-column justify-content-center align-items-end"
         *ngIf="contentImages.length">
-        <span class="d-block" *ngFor="let img of contentImages">{{img}}</span>
+        <span class="d-block" *ngFor="let img of contentImages">{{img}}<button mat-icon-button type="button" (click)="removeImage('content',img)" class="btn btn-outline-danger btn-sm ms-2"><mat-icon>close</mat-icon></button></span>
       </div>
     </div>
     <img *ngIf="preview" [src]="preview" />

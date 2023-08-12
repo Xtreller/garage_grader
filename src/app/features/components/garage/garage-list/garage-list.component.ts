@@ -8,6 +8,7 @@ import { EditReviewComponent } from '../../review/edit-review/edit-review.compon
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationComponent } from 'src/app/shared/components/confirmation/confirmation.component';
 import { AuthService } from 'src/app/core/services/Auth/auth.service';
+import { environment } from 'src/environment/environment';
 
 @Component({
   selector: 'app-garage-list',
@@ -17,6 +18,7 @@ import { AuthService } from 'src/app/core/services/Auth/auth.service';
 export class GarageListComponent {
 
   garageList: Garage[] = [];
+  storageUrl = environment.storageUrl;
 
   user: string | null = localStorage.getItem('USER');
   rights: Rights;

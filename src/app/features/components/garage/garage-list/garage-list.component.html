@@ -1,17 +1,18 @@
 <app-filter (data)="setGarages($event)"></app-filter>
 <div class="card mb-3 shadow-sm" *ngFor="let garage of garageList">
   <div class="d-flex flex-row ">
-
-    <img
-      src="https://images.unsplash.com/photo-1570129476815-ba368ac77013?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Z2FyYWdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
+    <img *ngIf="garage?.profile" src="{{storageUrl + garage.profile.path}}" alt="Generic placeholder image"
       class="card-img-left col-5" alt="...">
+    <img *ngIf="!garage?.profile"
+      src="https://images.unsplash.com/photo-1570129476815-ba368ac77013?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Z2FyYWdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
+      alt="Generic placeholder image" class="card-img-left col-5" alt="...">
     <div class="col">
       <div class="card-content ">
         <h2 class=" bold mb-2">{{garage.name}}
           <button class="btn mt-0 pt-1  me-2 float-end" (click)="favorite(garage.id)">
-            <mat-icon >
+            <mat-icon>
               <span *ngIf="favorites && favorites.includes(garage.id);else notFav">bookmark</span>
-              <ng-template #notFav><span >bookmark_border</span></ng-template>
+              <ng-template #notFav><span>bookmark_border</span></ng-template>
             </mat-icon>
           </button>
         </h2>

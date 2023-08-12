@@ -6,7 +6,7 @@
   </mat-expansion-panel-header>
   <div class="mb-md-2 mt-md-4 pb-2" formGroupName="worktime">
     <div class="row">
-      <mat-checkbox class="example-margin" color="primary" (change)="cheboxChecked($event.checked,$event)">
+      <mat-checkbox class="example-margin" color="primary" (change)="cheboxChecked($event.checked,$event)" formControlName="always_open">
         Денонощно отворено!
       </mat-checkbox>
     </div>
@@ -15,7 +15,7 @@
 
         <mat-form-field class="form-outline form-white w-100 mb-2" appearance="outline">
           <mat-label>Начало в понеделник</mat-label>
-          <input matInput placeholder="Начало в понеделник" matTimepicker>
+          <input matInput placeholder="Начало в понеделник" matTimepicker formContolName="mon_start" [value]="f['mon_start']?.value" >
           <mat-icon matSuffix>access_time</mat-icon>
         </mat-form-field>
 
@@ -23,7 +23,7 @@
       <div class="col">
         <mat-form-field class="form-outline form-white w-100 mb-2" appearance="outline">
           <mat-label>Край в понеделник</mat-label>
-          <input matInput placeholder="Начало в понеделник" matTimepicker>
+          <input matInput placeholder="Начало в понеделник" matTimepicker formContolName="mon_end" [value]="f['mon_end']?.value">
           <mat-icon matSuffix>access_time</mat-icon>
 
         </mat-form-field>
@@ -33,36 +33,17 @@
       <div class="col">
 
         <mat-form-field class="form-outline form-white w-100 mb-2" appearance="outline">
-          <mat-label>Начало в понеделник</mat-label>
-          <input matInput placeholder="Начало в понеделник" matTimepicker>
+          <mat-label>Начало в вторник</mat-label>
+          <input matInput placeholder="Начало в вторник" matTimepicker formContolName="tue_start" [value]="f['tue_start']?.value">
           <mat-icon matSuffix>access_time</mat-icon>
         </mat-form-field>
 
       </div>
       <div class="col">
         <mat-form-field class="form-outline form-white w-100 mb-2" appearance="outline">
-          <mat-label>Край в понеделник</mat-label>
-          <input matInput placeholder="Начало в понеделник" matTimepicker>
+          <mat-label>Край в вторник</mat-label>
+          <input matInput placeholder="Начало в вторник" matTimepicker formContolName="tue_end" [value]="f['tue_end']?.value">
           <mat-icon matSuffix>access_time</mat-icon>
-        </mat-form-field>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-
-        <mat-form-field class="form-outline form-white w-100 mb-2" appearance="outline">
-          <mat-label>Начало в понеделник</mat-label>
-          <input matInput placeholder="Начало в понеделник" matTimepicker>
-          <mat-icon matSuffix>access_time</mat-icon>
-        </mat-form-field>
-
-      </div>
-      <div class="col">
-        <mat-form-field class="form-outline form-white w-100 mb-2" appearance="outline">
-          <mat-label>Край в понеделник</mat-label>
-          <input matInput placeholder="Начало в понеделник" matTimepicker>
-          <mat-icon matSuffix>access_time</mat-icon>
-
         </mat-form-field>
       </div>
     </div>
@@ -70,16 +51,16 @@
       <div class="col">
 
         <mat-form-field class="form-outline form-white w-100 mb-2" appearance="outline">
-          <mat-label>Начало в понеделник</mat-label>
-          <input matInput placeholder="Начало в понеделник" matTimepicker>
+          <mat-label>Начало в сряда</mat-label>
+          <input matInput placeholder="Начало в сряда" matTimepicker formContolName="wed_start" [value]="f['wed_start']?.value">
           <mat-icon matSuffix>access_time</mat-icon>
         </mat-form-field>
 
       </div>
       <div class="col">
         <mat-form-field class="form-outline form-white w-100 mb-2" appearance="outline">
-          <mat-label>Край в понеделник</mat-label>
-          <input matInput placeholder="Начало в понеделник" matTimepicker>
+          <mat-label>Край в сряда</mat-label>
+          <input matInput placeholder="Начало в сряда" matTimepicker formContolName="wed_end" [value]="f['wed_end']?.value">
           <mat-icon matSuffix>access_time</mat-icon>
 
         </mat-form-field>
@@ -89,16 +70,35 @@
       <div class="col">
 
         <mat-form-field class="form-outline form-white w-100 mb-2" appearance="outline">
-          <mat-label>Начало в понеделник</mat-label>
-          <input matInput placeholder="Начало в понеделник" matTimepicker>
+          <mat-label>Начало в четвъртък</mat-label>
+          <input matInput placeholder="Начало в четвъртък" matTimepicker formContolName="thu_start" [value]="f['thu_start']?.value">
           <mat-icon matSuffix>access_time</mat-icon>
         </mat-form-field>
 
       </div>
       <div class="col">
         <mat-form-field class="form-outline form-white w-100 mb-2" appearance="outline">
-          <mat-label>Край в понеделник</mat-label>
-          <input matInput placeholder="Начало в понеделник" matTimepicker>
+          <mat-label>Край в четвъртък</mat-label>
+          <input matInput placeholder="Начало в четвъртък" matTimepicker formContolName="thu_end" [value]="f['thu_end']?.value">
+          <mat-icon matSuffix>access_time</mat-icon>
+
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+
+        <mat-form-field class="form-outline form-white w-100 mb-2" appearance="outline">
+          <mat-label>Начало в петък</mat-label>
+          <input matInput placeholder="Начало в петък" matTimepicker formContolName="fri_start" [value]="f['fri_start']?.value">
+          <mat-icon matSuffix>access_time</mat-icon>
+        </mat-form-field>
+
+      </div>
+      <div class="col">
+        <mat-form-field class="form-outline form-white w-100 mb-2" appearance="outline">
+          <mat-label>Край в петък</mat-label>
+          <input matInput placeholder="Начало в петък" matTimepicker formContolName="fri_end" [value]="f['fri_end']?.value">
           <mat-icon matSuffix>access_time</mat-icon>
 
         </mat-form-field>
@@ -107,15 +107,15 @@
     <div class="row">
       <div class="col">
         <mat-form-field class="form-outline form-white w-100 mb-2" appearance="outline">
-          <mat-label>Начало в понеделник</mat-label>
-          <input matInput placeholder="Начало в понеделник" matTimepicker>
+          <mat-label>Начало в събота</mat-label>
+          <input matInput placeholder="Начало в събота" matTimepicker formContolName="sat_start" [value]="f['sat_start']?.value">
           <mat-icon matSuffix>access_time</mat-icon>
         </mat-form-field>
       </div>
       <div class="col">
         <mat-form-field class="form-outline form-white w-100 mb-2" appearance="outline">
-          <mat-label>Край в понеделник</mat-label>
-          <input matInput placeholder="Начало в понеделник" matTimepicker>
+          <mat-label>Край в събота</mat-label>
+          <input matInput placeholder="Начало в събота" matTimepicker formContolName="sat_end" [value]="f['sat_end']?.value">
           <mat-icon matSuffix>access_time</mat-icon>
         </mat-form-field>
       </div>
@@ -123,15 +123,15 @@
     <div class="row">
       <div class="col">
         <mat-form-field class="form-outline form-white w-100 mb-2" appearance="outline">
-          <mat-label>Начало в понеделник</mat-label>
-          <input matInput placeholder="Начало в понеделник" matTimepicker>
+          <mat-label>Начало в неделя</mat-label>
+          <input matInput placeholder="Начало в неделя" matTimepicker formContolName="sun_start" [value]="f['sun_start']?.value">
           <mat-icon matSuffix>access_time</mat-icon>
         </mat-form-field>
       </div>
       <div class="col">
         <mat-form-field class="form-outline form-white w-100 mb-2" appearance="outline">
-          <mat-label>Край в понеделник</mat-label>
-          <input matInput placeholder="Начало в понеделник" matTimepicker>
+          <mat-label>Край в неделя</mat-label>
+          <input matInput placeholder="Начало в неделя" matTimepicker formContolName="sun_end" [value]="f['sun_end']?.value">
           <mat-icon matSuffix>access_time</mat-icon>
         </mat-form-field>
       </div>
