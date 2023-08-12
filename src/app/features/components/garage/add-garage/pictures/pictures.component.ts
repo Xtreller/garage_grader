@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { ControlContainer, FormBuilder, FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import Garage from 'src/app/features/interfaces/Garage/garage.interface';
 import { Image } from 'src/app/shared/interfaces/Images/image';
 import { ImageService } from 'src/app/shared/services/Images/image.service';
@@ -22,7 +23,7 @@ export class PicturesComponent implements OnInit {
   formData: FormData = new FormData();
   preview: any;
   loading: boolean = false;
-  constructor(private parent: FormGroupDirective, private fb: FormBuilder, private imageService: ImageService) { }
+  constructor(private parent: FormGroupDirective, private fb: FormBuilder, private imageService: ImageService, private snackbar: MatSnackBar) { }
   ngOnInit(): void {
 
     this.parentForm = this.parent.form;
@@ -44,9 +45,9 @@ export class PicturesComponent implements OnInit {
   }
   ngOnChanges(change: SimpleChanges) {
     if (change['data'] && this.data) {
-      this.coverPicture = this.data.cover.original_name;
+      this.coverPicture = this.data.cover?.original_name;
       this.data.content?.map((image: Image) => this.contentImages.push(image.original_name));
-      this.profilePicture = this.data.profile.original_name
+      this.profilePicture = this.data.profile?.original_name
     }
   }
   onFileSelected(event: any, type: string = 'content') {
@@ -87,16 +88,19 @@ export class PicturesComponent implements OnInit {
     switch (type) {
       case 'cover':
         if (this.data.cover) {
-          console.log(this.data.cover);
-          this.imageService.removeImage(this.data.cover.id).subscribe((response:any)=>{
-            console.log(response.data);
+          this.imageService.removeImage(this.data.cover.id).subscribe((response: any) => {
+            this.snackbar.open('Снимката беше премахната', '', { duration: 2500 });
           })
         }
         this.coverPicture = '';
         break;
       case 'profile':
+        console.log(this.data);
         if (this.data.profile) {
-          this.imageService.removeImage(this.data.profile.id)
+          this.imageService.removeImage(this.data.profile.id).subscribe(() => {
+            this.snackbar.open('Снимката беше премахната', '', { duration: 2500 });
+          })
+
         }
         this.profilePicture = '';
         break;
@@ -106,7 +110,7 @@ export class PicturesComponent implements OnInit {
           if (typeof image == 'object') {
             const id = Number((image as Image).id);
             this.imageService.removeImage(id).subscribe((response: any) => {
-              console.log(response);
+              this.snackbar.open('Снимката беше премахната', '', { duration: 2500 });
             });
           }
         }

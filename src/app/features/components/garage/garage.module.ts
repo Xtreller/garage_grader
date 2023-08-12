@@ -26,7 +26,7 @@ import { RatingsComponent } from './ratings/ratings.component';
     MaterialModule,
     GarageRoutingModule,
     MatTimepickerModule,
-    ReviewModule
+    ReviewModule,
   ],
   // schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports:[GarageListComponent],

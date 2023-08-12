@@ -35,10 +35,10 @@ export class WorktimeComponent {
         thu_end: new FormControl("", Validators.required),
         fri_start: new FormControl("", Validators.required),
         fri_end: new FormControl("", Validators.required),
-        sat_start: new FormControl(""),
-        sat_end: new FormControl(""),
-        sun_start: new FormControl(""),
-        sun_end: new FormControl(""),
+        sat_start: new FormControl(new Date(new Date().setHours(0,0,0,0))),
+        sat_end: new FormControl(new Date(new Date().setHours(0,0,0,0))),
+        sun_start: new FormControl(new Date(new Date().setHours(0,0,0,0))),
+        sun_end: new FormControl(new Date(new Date().setHours(0,0,0,0))),
       })
     );
   }
@@ -53,7 +53,6 @@ export class WorktimeComponent {
           if (!this.required.includes(key[0])) {
             key[1].setValue('');
             key[1].addValidators(Validators.required);
-
           }
         })
       })
@@ -64,8 +63,7 @@ export class WorktimeComponent {
         Object.entries(element).forEach((key) => {
           if (!this.required.includes(key[0])) {
             console.log(key[1]);
-            (this.parentForm.get('worktime') as FormGroup).get('mon_start')?.setValue('00:00');
-            // key[1].setValue('00:00:00');
+            key[1].patchValue(new Date(new Date().setHours(0,0,0,0)) );
             key[1].removeValidators(Validators.required);
           }
         })

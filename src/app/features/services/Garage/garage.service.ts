@@ -33,7 +33,7 @@ export class GarageService {
   }
 
   addGarage(data: any) {
-    return this.http.post(this.apiUrl + '/garage', data);
+    return this.http.post(this.apiUrl + '/garage/' + this.auth.getLoggedUserId(), data);
   }
   deleteGarage(id: number) {
     return this.http.delete(this.apiUrl + '/garage/' + id);

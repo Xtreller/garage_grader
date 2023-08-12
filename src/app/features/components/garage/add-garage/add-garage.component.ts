@@ -54,7 +54,11 @@ export class AddGarageComponent {
       });
       Object.keys((this.controls['worktime'] as FormGroup).value).forEach(key => {
         if (!this.formData.has(key)) {
-          this.formData.append(key, (this.controls['worktime'] as FormGroup).get(key)?.value)
+          if (key != 'always_open') {
+            this.formData.append(key, new Date((this.controls['worktime'] as FormGroup).get(key)?.value).toLocaleTimeString('it-IT').toString())
+          } else {
+            this.formData.append(key, (this.controls['worktime'] as FormGroup).get(key)?.value)
+          }
         }
       });
       // Object.keys((this. as FormGroup).value).forEach(key => {
