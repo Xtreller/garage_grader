@@ -48,7 +48,6 @@ export class WorktimeComponent {
   cheboxChecked(checked: boolean, event: any) {
     if (!checked) {
       Array(this.f).forEach((element) => {
-        console.log(element);
         Object.entries(element).forEach((key) => {
           if (!this.required.includes(key[0])) {
             key[1].setValue('');
@@ -59,10 +58,8 @@ export class WorktimeComponent {
     }
     else {
       Array(this.f).forEach((element) => {
-        console.log(element);
         Object.entries(element).forEach((key) => {
           if (!this.required.includes(key[0])) {
-            console.log(key[1]);
             key[1].patchValue(new Date(new Date().setHours(0,0,0,0)) );
             key[1].removeValidators(Validators.required);
           }

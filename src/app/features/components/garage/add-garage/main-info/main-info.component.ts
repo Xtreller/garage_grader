@@ -1,6 +1,8 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { ControlContainer, Form, FormBuilder, FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import Garage from 'src/app/features/interfaces/Garage/garage.interface';
+import { Service } from 'src/app/features/interfaces/Services/service';
+import { ServiceService } from 'src/app/features/services/Services/service.service';
 
 @Component({
   selector: 'app-main-info',
@@ -13,8 +15,11 @@ export class MainInfoComponent implements OnInit {
   @Input('data') data: Garage;
   parentForm!: FormGroup;
   mainInfoOpen: boolean = true;
-  constructor(private fb: FormBuilder, private parent: FormGroupDirective) {
-
+  serviceTypes: Service[] = [];
+  constructor(private fb: FormBuilder, private parent: FormGroupDirective, private servicesService: ServiceService) {
+    this.servicesService.getServices().subscribe((response: any) => {
+      this.serviceTypes = response.data;
+    })
   }
   ngOnInit(): void {
     this.mainInfoOpen = true;
@@ -25,7 +30,7 @@ export class MainInfoComponent implements OnInit {
         name: new FormControl("", Validators.required),
         description: new FormControl(),
         type: new FormControl("", Validators.required),
-        services: new FormControl("", Validators.required),
+        services: new FormControl(""),
         phone: new FormControl("", Validators.required),
         mobile_service: new FormControl(),
         address: new FormControl(),
@@ -36,12 +41,26 @@ export class MainInfoComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if(changes['data']) {
-      if(this.data) {
+    if (changes['data']) {
+      if (this.data) {
+        Array(this.f).forEach((element) => {
+          Object.entries(element).forEach((key) => {
+            if(key[0] == 'controls'){
+              Array(key[1]).forEach(element => {
+                  console.log(element);
+                  // console.log(key[0],key[1]);
+              });
+            }
+            // if (!this.required.includes(key[0])) {
+              // key[1].setValue('');
+              // key[1].addValidators(Validators.required);
+            // }
+          })
+        })
         this.f.patchValue(this.data);
-        this.f.get('mobile_service')?.setValue(this.data.are_mobile_service==1 ? true:false);
+        this.f.controls['mobile_service']?.setValue(this.data.are_mobile_service == 1 ? true : false);
       }
     }
   }
-  get f() { return this.parentForm.get('main_info') as FormControl }
+  get f() { return (this.parentForm.get('main_info') as FormGroup) }
 }

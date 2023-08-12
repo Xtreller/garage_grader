@@ -39,7 +39,7 @@ export class GarageService {
     return this.http.delete(this.apiUrl + '/garage/' + id);
   }
   updateGarage(id: number, data: any) {
-    return this.http.post(this.apiUrl + '/garage/' + id, data);
+    return this.http.post(this.apiUrl + '/update_garage/' + id, data);
   }
   getFavorites() {
     return this.http.get(this.apiUrl + '/favorites');

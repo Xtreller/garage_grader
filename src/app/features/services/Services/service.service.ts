@@ -9,6 +9,9 @@ import { Service } from '../../interfaces/Services/service';
 export class ServiceService {
   apiUrl = environment.apiUrl + '/services';
   constructor(private http: HttpClient) { }
+  getServices(){
+    return this.http.get(this.apiUrl);
+  }
   getService(id: any) {
     return this.http.get(this.apiUrl + `/${id}`);
   }
