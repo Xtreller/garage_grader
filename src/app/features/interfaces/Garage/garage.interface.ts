@@ -11,7 +11,7 @@ export default interface Garage {
   phone: string,
   always_open: number,
   view_count: number,
-  rate?: number,
+  rate: number,
   are_mobile_service: number,
   favorites: [],
   reviews: [],

@@ -27,10 +27,10 @@
         <mat-icon>library_books</mat-icon>
         <span>Админски панел</span>
       </a>
-      <button mat-menu-item>
-        <mat-icon>bookmark</mat-icon>
+      <a mat-menu-item routerLink="/favorites">
+        <mat-icon   matBadge="{{favorites}}">bookmark</mat-icon>
         <span>Запазени</span>
-      </button>
+      </a>
       <a mat-menu-item *ngIf="role == 'owner'" routerLink="/my-garages">
         <mat-icon>widgets</mat-icon>
         <span>Моите гаражи</span>

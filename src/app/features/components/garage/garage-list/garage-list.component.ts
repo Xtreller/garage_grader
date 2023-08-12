@@ -23,6 +23,7 @@ export class GarageListComponent {
   user: string | null = localStorage.getItem('USER');
   rights: Rights;
   favorites: number[] = [];
+  editable: boolean = false;
   constructor(private garageService: GarageService, private router: Router, private snackbar: MatSnackBar, private dialog: MatDialog, private auth: AuthService) {
     this.getData();
   }
@@ -32,18 +33,29 @@ export class GarageListComponent {
         this.garageList = response.data;
         if (this.user) {
           this.rights = JSON.parse(this.user).role;
+          this.editable = true;
+
+          console.log(this.rights);
+        }
+      })
+    }
+    else if (this.router.url.includes('favorites')) {
+      this.garageService.getUserFavorite().subscribe((response: any) => {
+        this.garageList = response.data;
+        if (this.user) {
+          this.rights = JSON.parse(this.user).role;
           console.log(this.rights);
         }
       })
     }
     else {
       this.garageService.getGarages().subscribe((response: any) => {
-        this.garageList = response.data;
+        this.garageList = response.data.sort((a: Garage, b: Garage) => b.rate - a.rate);
       })
     }
     if (this.auth.isLogged()) {
       this.favorites = JSON.parse(localStorage.getItem('favorites') || "[]");
-      // console.log(this.favorites);
+
     }
   }
   setGarages(data: Garage[]) {
@@ -53,9 +65,11 @@ export class GarageListComponent {
   favorite(id: number) {
     this.garageService.favorite(id).subscribe((resp: any) => {
       if (resp.data || resp.status) {
-        this.garageService.getFavorites().subscribe((response:any)=>{
-          if(response.data){
-            this.favorites = response.data.map((f:any)=>f.garage_id);
+        this.garageService.getFavorites().subscribe((response: any) => {
+          if (response.data) {
+            this.favorites = response.data.map((f: any) => f.garage_id);
+            localStorage.setItem('favorites',JSON.stringify(this.favorites));
+            this.getData()
           }
         });
       }
