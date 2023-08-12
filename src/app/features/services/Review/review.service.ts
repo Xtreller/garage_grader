@@ -16,6 +16,9 @@ export class ReviewService {
   getReviews(id: number) {
     return this.http.get(this.apiUrl + '/reviews/' + id);
   }
+  getUserReviews(id: number) {
+    return this.http.get(this.apiUrl + '/user_reviews/' + id);
+  }
   postReview(data: PostReviewData) {
     return this.http.post(this.apiUrl + '/reviews', data);
   }

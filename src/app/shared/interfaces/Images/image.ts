@@ -1,5 +1,5 @@
 export interface Image {
-  id?: number,
+  id: number,
   original_name:string,
   path: string,
   related_id:number,

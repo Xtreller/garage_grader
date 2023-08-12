@@ -33,6 +33,9 @@ export class HeaderComponent {
   }
   openProfile(): void {
     const dialogRef = this.dialog.open(UserProfileComponent, {
+      width:'500',
+      height:'auto',
+
       data: {id:localStorage.getItem("USER_ID")},
       panelClass: 'mat-dialog-round'
     });

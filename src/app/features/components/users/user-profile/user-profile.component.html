@@ -1,38 +1,53 @@
-<div class="d-flex justify-content-stretch align-items-center overflow-hidden">
-  <div class="w-100">
-    <div >
-      <div class="row g-0">
+<div class="d-flex justify-content-stretch align-items-center overflow-hidden profile-modal">
+  <div class="w-100 ">
+    <div class="w-100 ">
+      <div class="row g-0 ">
         <div class="col-md-4 gradient-custom text-center text-white">
-          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp" alt="Avatar"
-            class="img-fluid my-5" style="width: 80px;" />
-          <h5>Marie Horwitz</h5>
-          <p>Web Designer</p>
-          <i class="far fa-edit mb-5"></i>
+          <div class="col-12 mb-1">
+
+            <img *ngIf="image" src="{{storagePath + image.path}}" alt="Avatar" class="img-fluid mt-5  rounded-circle shadow-md"
+              style="width: 110px;" />
+            <img *ngIf="!image"
+              src="https://e7.pngegg.com/pngimages/84/165/png-clipart-united-states-avatar-organization-information-user-avatar-service-computer-wallpaper-thumbnail.png"
+              alt="Avatar" class="img-fluid mt-5  rounded-circle shadow-md" style="width: 110px;" />
+          </div>
+          <div class="col-12 mt-n1 mb-3" *ngIf="!remove">
+            <input type="file" id="avatar-input-file" accept="image/*" (change)="onFileChange($event)" hidden
+              #userInput />
+            <button mat-mini-fab type="button" color="primary" (click)="userInput.click()" class="text-center"><mat-icon
+                class="icon" fontIcon="edit"></mat-icon></button>
+          </div>
+          <div class="col-12 mt-n1 mb-3" *ngIf="remove">
+            <button mat-mini-fab type="button"  (click)="resetInput()"  class="bg-danger btn btn-danger"><mat-icon
+                class="icon" fontIcon="close"></mat-icon></button>
+          </div>
+          <h3>{{user.name}}</h3>
+          <p>{{user.role.name}}</p>
         </div>
         <div class="col-md-8">
           <div class="card-body p-4">
-            <h6>Information</h6>
+            <h4>Основна информация</h4>
             <hr class="mt-0 mb-4">
             <div class="row pt-1">
               <div class="col-6 mb-3">
-                <h6>Email</h6>
-                <p class="text-muted">info@example.com</p>
+                <h5>Email</h5>
+                <p class="text-muted"><a href='mailto:{user.email}'>{{user.email}}</a></p>
               </div>
               <div class="col-6 mb-3">
-                <h6>Phone</h6>
-                <p class="text-muted">123 456 789</p>
+                <h5>Phone</h5>
+                <p class="text-muted">{{user.phone}}</p>
               </div>
             </div>
-            <h6>Projects</h6>
+            <h4>Допълнителна информация</h4>
             <hr class="mt-0 mb-4">
             <div class="row pt-1">
               <div class="col-6 mb-3">
-                <h6>Recent</h6>
-                <p class="text-muted">Lorem ipsum</p>
+                <h5>Ревюта</h5>
+                <p class="text-muted">{{user.reviews}}</p>
               </div>
               <div class="col-6 mb-3">
-                <h6>Most Viewed</h6>
-                <p class="text-muted">Dolor sit amet</p>
+                <h5>Любими</h5>
+                <p class="text-muted">{{user.favorites?.length}}</p>
               </div>
             </div>
             <div class="d-flex justify-content-start">
