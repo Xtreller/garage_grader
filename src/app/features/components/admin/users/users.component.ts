@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ColDef, GridReadyEvent, GridApi, GridOptions } from 'ag-grid-community';
 import { AdminService } from 'src/app/features/services/Admin/admin.service';
 import { TableActionsComponent } from '../table-actions/table-actions.component';
+import { DateFormatService } from 'src/app/shared/services/date-format.service';
 
 export interface PeriodicElement {
   name: string;
@@ -16,11 +17,12 @@ export interface PeriodicElement {
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss']
 })
-export class UsersComponent  {
+export class UsersComponent {
   private gridApi!: GridApi;
 
   public defaultColDef: ColDef = {
     resizable: true,
+    // editable:true,
     cellClass: 'd-flex flex-row align-items-center'
   };
   users: any;
@@ -28,8 +30,21 @@ export class UsersComponent  {
     { headerName: 'Id', field: 'id', maxWidth: 100, },
     { headerName: 'Име', field: 'name' },
     { headerName: 'Еmail', field: 'email' },
-    { headerName: 'Роля', field: 'role.name' },
-    { headerName: 'Регисриран', field: 'created_at' },
+    {
+      headerName: 'Роля', field: 'role.name',
+      cellEditor: 'agRichSelectCellEditor',
+      editable: false,
+      cellEditorPopup: true,
+      cellEditorParams: {
+        cellHeight: 45,
+        values: ['Админ', 'Owner','Maintainer','User'],
+      },
+    },
+    { headerName: 'Регисриран', field: 'created_at',valueFormatter:(params)=>{
+
+      return  params.value ? this.dateFormat.formatDate(params.value,"DD.MM.YYYY HH:MM") :"";
+
+    } },
     { headerName: 'Действия', field: 'actions', type: 'rightAligned', cellRenderer: TableActionsComponent, cellRendererParams: { data: "users", parent: this } },
   ];
   rowData = [];
@@ -41,7 +56,7 @@ export class UsersComponent  {
     onGridReady: (e) => this.onGridReady(e)
   }
 
-  constructor(private adminService: AdminService) { }
+  constructor(private adminService: AdminService,private dateFormat:DateFormatService) { }
 
   onGridReady(params: GridReadyEvent) {
     this.gridApi = params.api;

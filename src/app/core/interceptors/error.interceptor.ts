@@ -44,7 +44,7 @@ export class ErrorInterceptor implements HttpInterceptor {
           console.log(error);
           this.dialog.open(InfoComponent, {
             data: {
-              messages: error.error,
+              messages: error.error || error,
               status: error.status
             },
             width:'700px',
