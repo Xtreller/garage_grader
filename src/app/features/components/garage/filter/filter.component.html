@@ -26,7 +26,28 @@
         </mat-option>
       </mat-autocomplete>
     </div>
+
     <div class="col-2 align-self-middle  text-end me-2">
+      <button mat-icon-button class="text-muted me-2"
+        [matMenuTriggerFor]="filter"><mat-icon>filter_list</mat-icon></button>
+      <mat-menu #filter="matMenu" class="rounded">
+        <button mat-menu-item>
+          <mat-icon>arrow_upward</mat-icon>
+          <span>Рейтинг възходящо</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon >arrow_downward</mat-icon>
+          <span>Рейтинг низходящо</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon >arrow_upward</mat-icon>
+          <span>Посещаемост възходящо</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon >arrow_downward</mat-icon>
+          <span>Посещаемост низходящо</span>
+        </button>
+      </mat-menu>
       <button mat-icon-button class="text-muted" (click)="optionSelected()"><mat-icon>search</mat-icon></button>
     </div>
   </form>
