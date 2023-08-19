@@ -14,6 +14,7 @@ import { TruncateTextPipe } from 'src/app/shared/pipes/truncate-text.pipe';
 import { ReviewModule } from '../review/review.module';
 import { FilterComponent } from './filter/filter.component';
 import { RatingsComponent } from './ratings/ratings.component';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 
 
@@ -27,6 +28,7 @@ import { RatingsComponent } from './ratings/ratings.component';
     GarageRoutingModule,
     MatTimepickerModule,
     ReviewModule,
+    NgxMaterialTimepickerModule.setOpts('bg-EU', 'bulgarian')
   ],
   // schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports:[GarageListComponent],

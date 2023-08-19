@@ -24,59 +24,84 @@ export class WorktimeComponent {
     this.parentForm.addControl(
       'worktime',
       this.fb.group({
-        always_open: new FormControl(""),
-        mon_start: new FormControl("", Validators.required),
-        mon_end: new FormControl("", Validators.required),
-        tue_start: new FormControl("", Validators.required),
-        tue_end: new FormControl("", Validators.required),
-        wed_start: new FormControl("", Validators.required),
-        wed_end: new FormControl("", Validators.required),
-        thu_start: new FormControl("", Validators.required),
-        thu_end: new FormControl("", Validators.required),
-        fri_start: new FormControl("", Validators.required),
-        fri_end: new FormControl("", Validators.required),
-        sat_start: new FormControl(new Date(new Date().setHours(0,0,0,0))),
-        sat_end: new FormControl(new Date(new Date().setHours(0,0,0,0))),
-        sun_start: new FormControl(new Date(new Date().setHours(0,0,0,0))),
-        sun_end: new FormControl(new Date(new Date().setHours(0,0,0,0))),
+        always_open: new FormControl(new Date(new Date().setHours(0, 0, 0, 0))),
+        mon_start: new FormControl(new Date(new Date().setHours(0, 0, 0, 0))),
+        mon_end: new FormControl(new Date(new Date().setHours(0, 0, 0, 0))),
+        tue_start: new FormControl(new Date(new Date().setHours(0, 0, 0, 0))),
+        tue_end: new FormControl(new Date(new Date().setHours(0, 0, 0, 0))),
+        wed_start: new FormControl(new Date(new Date().setHours(0, 0, 0, 0))),
+        wed_end: new FormControl(new Date(new Date().setHours(0, 0, 0, 0))),
+        thu_start: new FormControl(new Date(new Date().setHours(0, 0, 0, 0))),
+        thu_end: new FormControl(new Date(new Date().setHours(0, 0, 0, 0))),
+        fri_start: new FormControl(new Date(new Date().setHours(0, 0, 0, 0))),
+        fri_end: new FormControl(new Date(new Date().setHours(0, 0, 0, 0))),
+        sat_start: new FormControl(new Date(new Date().setHours(0, 0, 0, 0))),
+        sat_end: new FormControl(new Date(new Date().setHours(0, 0, 0, 0))),
+        sun_start: new FormControl(new Date(new Date().setHours(0, 0, 0, 0))),
+        sun_end: new FormControl(new Date(new Date().setHours(0, 0, 0, 0))),
       })
     );
+    this.f['mon_start'].valueChanges.subscribe(val => console.log(val));
   }
   get f() {
     return (this.parentForm.get('worktime') as FormGroup).controls;
   }
   cheboxChecked(checked: boolean, event: any) {
     if (!checked) {
-      Array(this.f).forEach((element) => {
-        console.log(element);
-        Object.entries(element).forEach((key) => {
-          if (!this.required.includes(key[0])) {
-            key[1].setValue('');
-            key[1].addValidators(Validators.required);
-          }
-        })
-      })
+      this.setValidators
     }
     else {
-      Array(this.f).forEach((element) => {
-        console.log(element);
-        Object.entries(element).forEach((key) => {
-          if (!this.required.includes(key[0])) {
-            console.log(key[1]);
-            key[1].patchValue(new Date(new Date().setHours(0,0,0,0)) );
-            key[1].removeValidators(Validators.required);
-          }
-        })
-      });
+      this.removeValidators()
     }
   }
   ngOnChanges(changes: SimpleChanges) {
     if (changes['data']) {
       if (this.data) {
-        this.parentForm.patchValue(this.data);
-
+        Object.entries(this.data).map((key) => {
+          // console.log(Object.keys(this.f));
+          if (Object.keys(this.f).includes(key[0]) && key[0] != 'always_open') {
+            // console.log(key[0],'=>',key[1],'=>',this.f['mon_start'].value);
+            // console.log(key[0],'=>',key[1]);
+            //   // console.log(key[1], new Date(`1970-01-01T${key[1]}Z`));
+            //   // const [hours, minutes, seconds] = key[1].split(":").map(Number);
+            //   // console.log(hours, minutes, seconds)
+            //   // const now = new Date();
+            //   const dateObject = new Date(new Date().setHours(0, 0, 0, 0));
+            //   // console.log(dateObject);
+            // this.f[key[0]].setValue(time);
+          }
+        });
+        // this.parentForm.patchValue(this.data);
+        if (this.data.always_open) {
+          this.setValidators()
+        }
         this.f['always_open']?.setValue(this.data.always_open == 1 ? true : false);
       }
     }
+  }
+  setTime(time:string) {
+    return time.split(':').slice(0,2).join(':');
+
+  }
+  setValidators() {
+    Array(this.f).forEach((element) => {
+      Object.entries(element).forEach((key) => {
+        if (!this.required.includes(key[0])) {
+          key[1].setValue('');
+          key[1].addValidators(Validators.required);
+        }
+      })
+    })
+  }
+  removeValidators() {
+    Array(this.f).forEach((element) => {
+      console.log(element);
+      Object.entries(element).forEach((key) => {
+        if (!this.required.includes(key[0])) {
+          key[1].patchValue(new Date(new Date().setHours(0, 0, 0, 0)));
+          key[1].removeValidators(Validators.required);
+        }
+      })
+    });
   }
 }

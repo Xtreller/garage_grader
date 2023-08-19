@@ -42,31 +42,34 @@ export class AddGarageComponent {
     })
   }
   onSubmit() {
-    this.formData.forEach((value, key) => {
-      console.log(key, '=>', value);
+    // console.log(this.formData);
+    Object.keys((this.controls['main_info'] as FormGroup).value).forEach(key => {
+      // console.log('mI', key)
+      if (!this.formData.has(key)) {
+        this.formData.append(key, (this.controls['main_info'] as FormGroup).get(key)?.value)
+      }
+      else {
+        this.formData.set(key, (this.controls['main_info'] as FormGroup).get(key)?.value)
+      }
     });
-    if (this.form.valid) {
-      Object.keys((this.controls['main_info'] as FormGroup).value).forEach(key => {
-        // console.log('mI', key)
-        if (!this.formData.has(key)) {
-          this.formData.append(key, (this.controls['main_info'] as FormGroup).get(key)?.value)
-        }
-      });
-      Object.keys((this.controls['worktime'] as FormGroup).value).forEach(key => {
-        if (!this.formData.has(key)) {
-          if (key != 'always_open') {
-            this.formData.append(key, new Date((this.controls['worktime'] as FormGroup).get(key)?.value).toLocaleTimeString('it-IT').toString())
-          } else {
-            this.formData.append(key, (this.controls['worktime'] as FormGroup).get(key)?.value)
-          }
-        }
-      });
-      // Object.keys((this. as FormGroup).value).forEach(key => {
-      //   // console.log('pctrs', key)
-      //   // this.formData.append(key, (this.controls['pictures'] as FormGroup).get(key)?.value)
-      // });
+    this.formData.append('always_open','true');
+    // Object.keys((this.controls['worktime'] as FormGroup).value).forEach(key => {
+    //   if (!this.formData.has(key)) {
+    //     if (key != 'always_open') {
+    //       this.formData.append(key, new Date((this.controls['worktime'] as FormGroup).get(key)?.value).toLocaleTimeString('it-IT').toString())
+    //     } else {
+    //       this.formData.append(key, (this.controls['worktime'] as FormGroup).get(key)?.value)
+    //     }
+    //   }
+    // });
+    // Object.keys((this. as FormGroup).value).forEach(key => {
+    //   // console.log('pctrs', key)
+    //   // this.formData.append(key, (this.controls['pictures'] as FormGroup).get(key)?.value)
+    // });
 
-      for (var pair of this.formData) { console.log(pair[0] + ', ' + pair[1]); }
+    for (var pair of this.formData) { console.log(pair[0] + ', ' + pair[1]); }
+    if (this.form.valid) {
+
       if (this.id) {
         this.garageService.updateGarage(this.id, this.formData).subscribe((response: any) => {
           if (response.data) {

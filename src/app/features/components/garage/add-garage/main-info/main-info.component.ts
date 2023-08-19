@@ -22,26 +22,31 @@ export class MainInfoComponent implements OnInit {
     this.parentForm.addControl(
       'main_info',
       this.fb.group({
-        name: new FormControl("", Validators.required),
+        name: new FormControl("", [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]),
         description: new FormControl(),
-        type: new FormControl("", Validators.required),
-        services: new FormControl("", Validators.required),
-        phone: new FormControl("", Validators.required),
+        type: new FormControl("", [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]),
+        services: new FormControl("", [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]),
+        phone: new FormControl("", [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]),
         mobile_service: new FormControl(),
         address: new FormControl(),
-        town: new FormControl("", Validators.required),
+        town: new FormControl("", [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]),
         email: new FormControl(),
       })
     );
+    // this.controls['name'].valueChanges.subscribe((val)=>{
+    //   console.log(val)
+    //   console.log(this.controls['name'].hasError('required'));
+    // })
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if(changes['data']) {
-      if(this.data) {
+    if (changes['data']) {
+      if (this.data) {
         this.f.patchValue(this.data);
-        this.f.get('mobile_service')?.setValue(this.data.are_mobile_service==1 ? true:false);
+        this.f.get('mobile_service')?.setValue(this.data.are_mobile_service == 1 ? true : false);
       }
     }
   }
   get f() { return this.parentForm.get('main_info') as FormControl }
+  get controls() { return (this.parentForm.get('main_info') as FormGroup).controls }
 }
